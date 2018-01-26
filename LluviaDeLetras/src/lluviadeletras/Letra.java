@@ -19,6 +19,7 @@ public class Letra {
 
     public Letra(){
         letras= new ArrayList();
+        System.out.println("hola ");
     }
     
     public String letraRandom(int nivel) {
