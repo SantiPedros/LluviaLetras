@@ -5,6 +5,7 @@
  */
 package lluviadeletras;
 
+
 import java.awt.Label;
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,17 +15,17 @@ import java.util.Random;
  * @author rodry
  */
 public class Letra {
-    private Random r;
+    private Random r = new Random();
     private ArrayList<Label> letras;
-    private Controlador c;
+    
 
-    public Letra(Controlador c){
-        this.c=c;
-        letras= new ArrayList();
+    public Letra(){
+           letras= new ArrayList();
         System.out.println("hola ");
     }
     
     public String letraRandom(int nivel) {
+     
         int x=nivel*5;
         String letra;
         Boolean rep;
