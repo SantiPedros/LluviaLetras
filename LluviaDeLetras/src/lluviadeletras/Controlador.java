@@ -10,5 +10,13 @@ package lluviadeletras;
  * @author rodry
  */
 public class Controlador {
+    private Vista v;
+    private Modelo m;
+    private Letra l;
+    public Controlador(){
+        v = new Vista(this);
+        m = new Modelo(this);
+        l = new Letra(this);
+      }
     
 }

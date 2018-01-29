@@ -10,5 +10,8 @@ package lluviadeletras;
  * @author rodry
  */
 public class Modelo {
-    
+    private Controlador c;
+    public Modelo (Controlador c){
+        this.c=c;
+    }
 }

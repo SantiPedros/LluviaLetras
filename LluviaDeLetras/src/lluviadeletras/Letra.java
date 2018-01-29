@@ -16,8 +16,10 @@ import java.util.Random;
 public class Letra {
     private Random r;
     private ArrayList<Label> letras;
+    private Controlador c;
 
-    public Letra(){
+    public Letra(Controlador c){
+        this.c=c;
         letras= new ArrayList();
         System.out.println("hola ");
     }
