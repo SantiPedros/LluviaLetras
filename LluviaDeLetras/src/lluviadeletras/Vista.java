@@ -30,12 +30,9 @@ public class Vista extends JFrame {
     public Vista(Controlador c) {
         this.c = c;
         this.setLayout(null);
-<<<<<<< HEAD
         y = -10;
-=======
         this.setResizable(false);
         y = -20;
->>>>>>> b14ef927ff87fe7f0d6d3df48ebe411748fbc564
         letras = new ArrayList();
                 crearBloque();
 
