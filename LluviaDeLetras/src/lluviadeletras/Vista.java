@@ -96,10 +96,17 @@ public class Vista extends JFrame {
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 50, 20);
         }
     }
-
-    public ArrayList<Label> getLetras() {
-        return letras;
+    public void eliminarLetra (char letra){
+        for (int i = 0; i < letras.size(); i++) {
+            if(letras.get(i).getText().equals(letra)){
+                
+                letras.remove(letras.get(i));
+                lb.setText("");
+            }
+        }
     }
+
+ 
 
     public Label getLb() {
         return lb;

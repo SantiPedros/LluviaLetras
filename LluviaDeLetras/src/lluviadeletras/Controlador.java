@@ -77,7 +77,10 @@ public class Controlador implements KeyListener {
         else if(ke.getKeyChar()==v.getLb().getText().charAt(0)){
                 System.out.println("acertaste");
                 letraEliminar = ke.getKeyChar();
+                System.out.println("letra eliminar es" + letraEliminar);
                 m.mandarLetra(letraEliminar);
+                v.eliminarLetra(letraEliminar);
+               
                 
         }
        
