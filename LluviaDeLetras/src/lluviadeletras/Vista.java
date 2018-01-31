@@ -27,6 +27,7 @@ public class Vista extends JFrame {
     public Vista(Controlador c) {
         this.c = c;
         this.setLayout(null);
+        this.setResizable(false);
         y = -20;
         letras = new ArrayList();
 

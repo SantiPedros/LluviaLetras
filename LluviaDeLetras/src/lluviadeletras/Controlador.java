@@ -20,9 +20,12 @@ public class Controlador implements KeyListener {
     private Modelo m;
     private Timer timer, timer2;
     private String letra;
+   
+    
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
+       
         timer = new Timer(2000,new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
