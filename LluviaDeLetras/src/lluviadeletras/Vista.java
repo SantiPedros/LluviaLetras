@@ -98,8 +98,7 @@ public class Vista extends JFrame {
     }
     public void eliminarLetra (char letra){
         for (int i = 0; i < letras.size(); i++) {
-            if(letras.get(i).getText().equals(letra)){
-                
+            if(letras.get(i).getText().charAt(0)==letra){
                 letras.remove(letras.get(i));
                 lb.setText("");
             }
