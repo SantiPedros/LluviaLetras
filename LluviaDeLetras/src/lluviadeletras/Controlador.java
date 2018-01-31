@@ -18,12 +18,12 @@ import javax.swing.Timer;
 public class Controlador implements KeyListener {
     private Vista v;
     private Modelo m;
-    private Timer timer;
+    private Timer timer, timer2;
     private String letra;
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
-        timer = new Timer(300,new ActionListener(){
+        timer = new Timer(2000,new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                
@@ -33,6 +33,17 @@ public class Controlador implements KeyListener {
             
         });
         timer.start();
+        
+        timer2 = new Timer(1000,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               
+                v.cambiarY();
+            }
+            
+        });
+        timer2.start();
+        
       }
 
     public String getLetra() {
