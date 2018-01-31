@@ -21,6 +21,7 @@ public class Controlador implements KeyListener {
     private Timer timer,timer2;
     private String letra;
     private char letraEliminar;
+    
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
@@ -85,13 +86,13 @@ public class Controlador implements KeyListener {
         }
        
     }
-
+    
     @Override
     public void keyReleased(KeyEvent ke) {
+
+   System.out.println("ionciorwniocwnoino");
+   }
+
   // System.out.println("ionciorwniocwnoino");
 
     }
-    
-  
-    
-}

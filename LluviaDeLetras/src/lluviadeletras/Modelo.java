@@ -32,6 +32,6 @@ public class Modelo{
         l.quitarLetraArray(letra);
     }
 
-
+    
     
 }

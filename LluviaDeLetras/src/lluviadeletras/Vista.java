@@ -80,8 +80,8 @@ public class Vista extends JFrame {
 
     public void crearBloque() {
         bloque = new JPanel();
-        bloque.setBounds(275, 500, 50, 20);
-        bloque.setBackground(Color.black);
+        bloque.setBounds(275, 500, 85, 20);
+        bloque.setBackground(Color.DARK_GRAY);
         this.add(bloque);
     }
 
