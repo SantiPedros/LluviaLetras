@@ -91,11 +91,12 @@ public class Vista extends JFrame {
     }
     
     public void moverBloqueDerecha(){
-        
+        bloque.setBounds(bloque.getX()+10, bloque.getY(), 50, 20);
     }
     
     public void moverBloqueIzquierda(){
-        
+                bloque.setBounds(bloque.getX()-10, bloque.getY(), 50, 20);
+
     }
 
 }
