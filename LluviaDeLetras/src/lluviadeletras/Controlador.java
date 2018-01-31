@@ -20,7 +20,6 @@ public class Controlador implements KeyListener {
     private Modelo m;
     private Timer timer,timer2;
     private String letra;
-    
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
