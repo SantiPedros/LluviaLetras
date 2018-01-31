@@ -20,6 +20,7 @@ public class Controlador implements KeyListener {
     private Modelo m;
     private Timer timer,timer2;
     private String letra;
+    
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
@@ -33,11 +34,11 @@ public class Controlador implements KeyListener {
             
         });
         timer.start();
-         timer2 = new Timer(100,new ActionListener(){
+       
+        
+        timer2 = new Timer(100,new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-               
-                
                 v.cambiarY();
             }
             
@@ -69,6 +70,7 @@ public class Controlador implements KeyListener {
     @Override
     public void keyReleased(KeyEvent ke) {
    System.out.println("ionciorwniocwnoino");
+
     }
     
   

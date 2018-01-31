@@ -5,12 +5,13 @@
  */
 package lluviadeletras;
 
+import java.awt.Color;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
@@ -18,19 +19,26 @@ import javax.swing.Timer;
  * @author rodry
  */
 public class Vista extends JFrame {
+
     Controlador c;
-    private ArrayList <Label> letras;
+    private ArrayList<Label> letras;
     private Label lb;
+
     private int y = 0;
     private int x=0;
-    private Timer timer;
-    
-    public Vista(Controlador c){
-    this.c =c;
-    this.setLayout(null);
-    y = -20;
-    letras = new ArrayList();
-    
+
+
+    public Vista(Controlador c) {
+        this.c = c;
+        this.setLayout(null);
+        y = -10;
+        this.setResizable(false);
+        y = -20;
+        letras = new ArrayList();
+                crearBloque();
+
+        crearBarra();
+
 //    letras = new ArrayList();
 //    JLabel a = new JLabel("a");
 //    a.setBounds(60,60,200,200);
@@ -42,15 +50,14 @@ public class Vista extends JFrame {
     this.setVisible(true);
     
     
-    }
-    public void crearLetras(String letra){
-        //System.out.println(letra);
-        
+}
+
+    public void crearLetras(String letra) {
+        System.out.println(letra);
         x = (int) (Math.random() * 600);
         lb = new Label();
         lb.setText(letra);
-        lb.setBounds(x, -20,25,25);
-        //crearEscuchador();
+        lb.setBounds(x, 10, 25, 25);
         this.add(lb);
         letras.add(lb);
         lb.addKeyListener(c);
@@ -68,7 +75,24 @@ public class Vista extends JFrame {
         for (int i = 0; i < letras.size(); i++) {
             letras.get(i).addKeyListener(c);
         }
+
+
+    }
+
+
+    public void crearBarra() {
+        JPanel barra=new JPanel();
+        barra.setBounds(0, 500, 600, 20);
+        barra.setBackground(Color.red);
+        this.add(barra);
     }
     
-    
+    public void crearBloque(){
+        JPanel bloque=new JPanel();
+        bloque.setBounds(275, 500, 50, 20);
+        bloque.setBackground(Color.black);
+        
+        this.add(bloque);
+    }
+
 }
