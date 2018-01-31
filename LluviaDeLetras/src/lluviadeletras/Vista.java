@@ -20,7 +20,7 @@ import javax.swing.Timer;
  */
 public class Vista extends JFrame {
 
-    Controlador c;
+    private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
 
@@ -44,6 +44,7 @@ public class Vista extends JFrame {
 //    a.setBounds(60,60,200,200);
 //    letras.add(a);
 //    this.add(a);
+ this.addKeyListener(c);
     this.setResizable(false);
     this.setBounds(50,50,600,600);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -60,7 +61,7 @@ public class Vista extends JFrame {
         lb.setBounds(x, 10, 25, 25);
         this.add(lb);
         letras.add(lb);
-        lb.addKeyListener(c);
+       
         
                 
     }
@@ -71,13 +72,7 @@ public class Vista extends JFrame {
         }
        this.repaint();
     }
-    public void crearEscuchador(){
-        for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).addKeyListener(c);
-        }
 
-
-    }
 
 
     public void crearBarra() {
@@ -91,7 +86,6 @@ public class Vista extends JFrame {
         JPanel bloque=new JPanel();
         bloque.setBounds(275, 500, 50, 20);
         bloque.setBackground(Color.black);
-        
         this.add(bloque);
     }
 
