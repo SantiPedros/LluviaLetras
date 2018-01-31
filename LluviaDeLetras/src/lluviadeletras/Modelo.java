@@ -27,6 +27,10 @@ public class Modelo{
         letra = l.letraRandom(1);
         return letra;
     }
+    
+    public void mandarLetra(char letra){
+        l.quitarLetraArray(letra);
+    }
 
 
     

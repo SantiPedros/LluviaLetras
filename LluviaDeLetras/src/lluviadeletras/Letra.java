@@ -43,7 +43,7 @@ public class Letra {
         return letra;
     }
     
-    public void quitarLetraArray(String letra){
+    public void quitarLetraArray(char letra){
         for (int i = 0; i < letras.size(); i++) {
             if(letras.get(i).equals(letra)){
                 letras.remove(letras.get(i));
