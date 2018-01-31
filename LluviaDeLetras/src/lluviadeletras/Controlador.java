@@ -56,22 +56,24 @@ public class Controlador implements KeyListener {
     @Override
     public void keyTyped(KeyEvent ke) {
     System.out.println("ionciorwniocwnoino"); 
+
+    }
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        System.out.println("ionciorwniocwnoino");
+//        System.out.println(ke.getComponent());
+//        System.out.println(ke.getKeyCode());
+//        System.out.println(ke.getKeyChar());
             if(ke.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println("derechaaaa");
+            v.moverBloqueDerecha();
             
         }
         else if(ke.getKeyCode()==KeyEvent.VK_LEFT){
             System.out.println("izquierdaaaaa");
+            v.moverBloqueIzquierda();
         }
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        System.out.println("ionciorwniocwnoino");
-        System.out.println(ke.getComponent());
-        System.out.println(ke.getKeyCode());
-        System.out.println(ke.getKeyChar());
-
+    
     }
 
     @Override
