@@ -16,12 +16,12 @@ import java.util.Random;
  */
 public class Letra {
     private Random r = new Random();
-    private ArrayList<Label> letras;
+    private ArrayList<String> letras;
     
 
     public Letra(){
            letras= new ArrayList();
-        System.out.println("hola ");
+        //System.out.println("hola ");
     }
     
     public String letraRandom(int nivel) {
@@ -33,12 +33,21 @@ public class Letra {
             letra = ((char) (r.nextInt(x) + 'A')) + "";
             rep = false;
             for (int i = 0; i < letras.size(); i++) {
-                if (letras.get(i).getText().equals(letra)) {
+                if (letras.get(i).equals(letra)) {
                     rep = true;
                     break;
                 }
             }
         } while (rep);
+        letras.add(letra);
         return letra;
+    }
+    
+    public void quitarLetraArray(char letra){
+        for (int i = 0; i < letras.size(); i++) {
+            if(letras.get(i).equals(letra)){
+                letras.remove(letras.get(i));
+            }
+        }
     }
 }

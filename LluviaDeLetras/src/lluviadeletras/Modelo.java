@@ -16,7 +16,6 @@ import javax.swing.Timer;
 public class Modelo{
     private Controlador c;
     private Letra l;
-    private Timer timer;
     String letra;
     public Modelo (Controlador c){
         this.c=c;
@@ -27,6 +26,10 @@ public class Modelo{
     public String recogerLetra(){
         letra = l.letraRandom(1);
         return letra;
+    }
+    
+    public void mandarLetra(char letra){
+        l.quitarLetraArray(letra);
     }
 
     
