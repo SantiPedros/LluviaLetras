@@ -23,6 +23,7 @@ public class Vista extends JFrame {
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
+    private JPanel barra, bloque;
 
     private int y = 0;
     private int x=0;
@@ -76,17 +77,25 @@ public class Vista extends JFrame {
 
 
     public void crearBarra() {
-        JPanel barra=new JPanel();
+        barra=new JPanel();
         barra.setBounds(0, 500, 600, 20);
         barra.setBackground(Color.red);
         this.add(barra);
     }
     
     public void crearBloque(){
-        JPanel bloque=new JPanel();
+        bloque=new JPanel();
         bloque.setBounds(275, 500, 50, 20);
         bloque.setBackground(Color.black);
         this.add(bloque);
+    }
+    
+    public void moverBloqueDerecha(){
+        
+    }
+    
+    public void moverBloqueIzquierda(){
+        
     }
 
 }
