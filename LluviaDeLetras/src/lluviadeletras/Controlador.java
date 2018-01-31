@@ -20,6 +20,7 @@ public class Controlador implements KeyListener {
     private Modelo m;
     private Timer timer,timer2;
     private String letra;
+    private char letraEliminar;
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
@@ -60,10 +61,10 @@ public class Controlador implements KeyListener {
     }
     @Override
     public void keyPressed(KeyEvent ke) {
-        System.out.println("ionciorwniocwnoino");
+   //     System.out.println("ionciorwniocwnoino");
 //        System.out.println(ke.getComponent());
 //        System.out.println(ke.getKeyCode());
-//        System.out.println(ke.getKeyChar());
+         System.out.println(ke.getKeyChar());
             if(ke.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println("derechaaaa");
             v.moverBloqueDerecha();
@@ -73,12 +74,18 @@ public class Controlador implements KeyListener {
             System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
         }
-    
+        else if(ke.getKeyChar()==v.getLb().getText().charAt(0)){
+                System.out.println("acertaste");
+                letraEliminar = ke.getKeyChar();
+                m.mandarLetra(letraEliminar);
+                
+        }
+       
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-   System.out.println("ionciorwniocwnoino");
+  // System.out.println("ionciorwniocwnoino");
 
     }
     

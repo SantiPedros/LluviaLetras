@@ -99,4 +99,13 @@ public class Vista extends JFrame {
 
     }
 
+    public ArrayList<Label> getLetras() {
+        return letras;
+    }
+
+    public Label getLb() {
+        return lb;
+    }
+    
+
 }

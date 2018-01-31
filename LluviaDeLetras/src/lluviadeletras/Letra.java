@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class Letra {
     private Random r = new Random();
-    private ArrayList<Label> letras;
+    private ArrayList<String> letras;
     
 
     public Letra(){
@@ -33,12 +33,13 @@ public class Letra {
             letra = ((char) (r.nextInt(x) + 'A')) + "";
             rep = false;
             for (int i = 0; i < letras.size(); i++) {
-                if (letras.get(i).getText().equals(letra)) {
+                if (letras.get(i).equals(letra)) {
                     rep = true;
                     break;
                 }
             }
         } while (rep);
+        letras.add(letra);
         return letra;
     }
 }
