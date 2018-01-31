@@ -16,7 +16,6 @@ import javax.swing.Timer;
 public class Modelo{
     private Controlador c;
     private Letra l;
-    private Timer timer;
     String letra;
     public Modelo (Controlador c){
         this.c=c;
