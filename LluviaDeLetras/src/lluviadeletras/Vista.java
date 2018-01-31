@@ -89,14 +89,12 @@ public class Vista extends JFrame {
         if(bloque.getX()<=550){
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 50, 20);
         }
-        
     }
  
     public void moverBloqueIzquierda() {
         if(bloque.getX()>=0){
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 50, 20);
         }
-
     }
 
     public ArrayList<Label> getLetras() {

@@ -21,7 +21,7 @@ public class Letra {
 
     public Letra(){
            letras= new ArrayList();
-        System.out.println("hola ");
+        //System.out.println("hola ");
     }
     
     public String letraRandom(int nivel) {
@@ -41,5 +41,13 @@ public class Letra {
         } while (rep);
         letras.add(letra);
         return letra;
+    }
+    
+    public void quitarLetraArray(String letra){
+        for (int i = 0; i < letras.size(); i++) {
+            if(letras.get(i).equals(letra)){
+                letras.remove(letras.get(i));
+            }
+        }
     }
 }
