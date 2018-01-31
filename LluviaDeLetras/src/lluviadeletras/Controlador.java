@@ -75,12 +75,11 @@ public class Controlador implements KeyListener {
         }
     
     }
-
+    
     @Override
     public void keyReleased(KeyEvent ke) {
    System.out.println("ionciorwniocwnoino");
-
-    }
+   }
     
   
     
