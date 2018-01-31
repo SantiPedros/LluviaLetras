@@ -18,12 +18,12 @@ import javax.swing.Timer;
 public class Controlador implements KeyListener {
     private Vista v;
     private Modelo m;
-    private Timer timer;
+    private Timer timer,timer2;
     private String letra;
     public Controlador(){
         v = new Vista(this);
         m = new Modelo(this);
-        timer = new Timer(300,new ActionListener(){
+        timer = new Timer(2000,new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                
@@ -33,6 +33,16 @@ public class Controlador implements KeyListener {
             
         });
         timer.start();
+         timer2 = new Timer(100,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               
+                
+                v.cambiarY();
+            }
+            
+        });
+        timer2.start();
       }
 
     public String getLetra() {
@@ -45,17 +55,20 @@ public class Controlador implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    System.out.println("ionciorwniocwnoino"); 
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("ionciorwniocwnoino");
+        System.out.println(ke.getComponent());
+        System.out.println(ke.getKeyCode());
+        System.out.println(ke.getKeyChar());
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   System.out.println("ionciorwniocwnoino");
     }
     
   
