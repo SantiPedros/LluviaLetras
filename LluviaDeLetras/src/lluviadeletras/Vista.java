@@ -5,11 +5,13 @@
  */
 package lluviadeletras;
 
+import java.awt.Color;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
@@ -23,12 +25,16 @@ public class Vista extends JFrame {
     private Label lb;
     private int y, x;
     private Timer timer;
+    
 
     public Vista(Controlador c) {
         this.c = c;
         this.setLayout(null);
-        y = -20;
+        y = -10;
         letras = new ArrayList();
+                crearBloque();
+
+        crearBarra();
 
 //    letras = new ArrayList();
 //    JLabel a = new JLabel("a");
@@ -38,16 +44,6 @@ public class Vista extends JFrame {
         this.setBounds(50, 50, 600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-
-        /*
-        timer = new Timer(3000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cambiarY();
-            }
-
-        });
-*/
     }
 
     public void crearLetras(String letra) {
@@ -63,12 +59,25 @@ public class Vista extends JFrame {
     }
 
     public void cambiarY() {
-        System.out.println("cambiar y");
-        y += 20;
         for (int i = 0; i < letras.size(); i++) {
             letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY()+10, 25, 25);
         }
         this.repaint();
+    }
+
+    public void crearBarra() {
+        JPanel barra=new JPanel();
+        barra.setBounds(0, 500, 600, 20);
+        barra.setBackground(Color.red);
+        this.add(barra);
+    }
+    
+    public void crearBloque(){
+        JPanel bloque=new JPanel();
+        bloque.setBounds(275, 500, 50, 20);
+        bloque.setBackground(Color.black);
+        
+        this.add(bloque);
     }
 
 }
