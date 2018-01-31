@@ -66,7 +66,7 @@ public class Vista extends JFrame {
         System.out.println("cambiar y");
         y += 20;
         for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).setBounds(x, (y), 25, 25);
+            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY()+10, 25, 25);
         }
         this.repaint();
     }
