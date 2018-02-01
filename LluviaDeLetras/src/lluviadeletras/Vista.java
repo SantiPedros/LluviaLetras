@@ -10,12 +10,9 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
@@ -124,6 +121,11 @@ public class Vista extends JFrame {
 
     public Label getLb() {
         return lb;
+    }
+
+    public void pintarFondo() {
+        this.setBackground(Color.yellow);
+        repaint();
     }
     
 
