@@ -7,12 +7,9 @@ package lluviadeletras;
 
 import java.awt.Color;
 import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
@@ -87,30 +84,42 @@ public class Vista extends JFrame {
 
     public void moverBloqueDerecha() {
         if(bloque.getX()<=550){
-            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 50, 20);
-        }
+            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);           
+        }       
+        
     }
  
     public void moverBloqueIzquierda() {
         if(bloque.getX()>=0){
-            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 50, 20);
-        }
+            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);            
+        }        
     }
+   
+    
     public void eliminarLetra (char letra){
         for (int i = 0; i < letras.size(); i++) {
             if(letras.get(i).getText().charAt(0)==letra){
+            if(letras.get(i).getText().equals(""+letra)){
+                this.remove(letras.get(i));
                 letras.remove(letras.get(i));
                 lb.setText("");
             }
         }
         this.repaint();
+        repaint();
+    }
     }
 
- 
-
+    public ArrayList<Label> getLetras() {
+        return letras;
+    }
+    
     public Label getLb() {
         return lb;
     }
-    
+    public void pintarFondo(){
+        this.setBackground(Color.yellow);
+        this.repaint();
+    }
 
 }
