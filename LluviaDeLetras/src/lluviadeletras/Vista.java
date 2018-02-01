@@ -59,6 +59,21 @@ public class Vista extends JFrame {
         this.setVisible(true);
     }
     
+    //inicializar elementos de la Barra de Menu superior.
+    public void crearMenu(){
+        barraMenu=new MenuBar();
+        archivo=new Menu("Archivo");
+        level=new Menu("Level");
+        guardar=new MenuItem("Guardar");
+        cargar=new MenuItem("Cargar");
+        salir=new MenuItem("Salir");
+        level1=new MenuItem("Level 1");
+        level2=new MenuItem("Level 2");
+        level3=new MenuItem("Level 3");
+        level4=new MenuItem("Level 4");
+        level5=new MenuItem("Level 5");
+    }    
+    
 //método de creación de letras
     public void crearLetras(String letra) {
         System.out.println(letra);
