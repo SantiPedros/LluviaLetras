@@ -7,12 +7,9 @@ package lluviadeletras;
 
 import java.awt.Color;
 import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
@@ -99,14 +96,17 @@ public class Vista extends JFrame {
     public void eliminarLetra (char letra){
         for (int i = 0; i < letras.size(); i++) {
             if(letras.get(i).getText().charAt(0)==letra){
+                this.remove(letras.get(i));
                 letras.remove(letras.get(i));
                 lb.setText("");
             }
         }
     }
 
- 
-
+    public ArrayList<Label> getLetras() {
+        return letras;
+    }
+    
     public Label getLb() {
         return lb;
     }

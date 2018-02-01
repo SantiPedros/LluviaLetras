@@ -72,13 +72,20 @@ public class Controlador implements KeyListener {
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
-        } else if (ke.getKeyChar() == v.getLb().getText().charAt(0)) {
-            System.out.println("acertaste");
-            letraEliminar = ke.getKeyChar();
-            //System.out.println("letra eliminar es" + letraEliminar);
-            m.mandarLetra(letraEliminar);
-            v.eliminarLetra(letraEliminar);
+//        } else if (ke.getKeyChar() == v.getLb().getText().charAt(0)) {
+//            System.out.println("acertaste");
+//            letraEliminar = ke.getKeyChar();
+//            //System.out.println("letra eliminar es" + letraEliminar);
+//            m.mandarLetra(letraEliminar);
+//            v.eliminarLetra(letraEliminar);
+        }
+        letraEliminar = ke.getKeyChar();
 
+        for (int i = 0; i < v.getLetras().size(); i++) {
+            if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
+                m.mandarLetra(letraEliminar);
+                v.eliminarLetra(letraEliminar);
+            }
         }
 
     }
