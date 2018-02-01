@@ -7,6 +7,9 @@ package lluviadeletras;
 
 import java.awt.Color;
 import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,11 +27,18 @@ public class Vista extends JFrame {
     private ArrayList<Label> letras;
     private Label lb;
     private JPanel barra, bloque;
+    private MenuBar barraMenu;
+    private Menu archivo,level;
+    private MenuItem salir,guardar,cargar;
+    private MenuItem level1,level2,level3,level4,level5;
+    
+    
 
     private int y = 0;
     private int x = 0;
 
     public Vista(Controlador c) {
+        this.setTitle("LLuvia de Letras");
         this.c = c;
         this.setLayout(null);
         y = -10;
@@ -36,9 +46,7 @@ public class Vista extends JFrame {
         y = -20;
         letras = new ArrayList();
         crearBloque();
-
         crearBarra();
-
 //    letras = new ArrayList();
 //    JLabel a = new JLabel("a");
 //    a.setBounds(60,60,200,200);
@@ -49,9 +57,9 @@ public class Vista extends JFrame {
         this.setBounds(50, 50, 600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
-
+    
+//método de creación de letras
     public void crearLetras(String letra) {
         System.out.println(letra);
         x = (int) (Math.random() * 600);
@@ -60,45 +68,43 @@ public class Vista extends JFrame {
         lb.setBounds(x, 10, 25, 25);
         this.add(lb);
         letras.add(lb);
-
     }
 
     public void cambiarY() {
-
         for (int i = 0; i < letras.size(); i++) {
             letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 10, 25, 25);
         }
         this.repaint();
     }
-
+//creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
         barra.setBounds(0, 500, 600, 20);
         barra.setBackground(Color.red);
         this.add(barra);
     }
-
+//creación y adición de bloque
     public void crearBloque() {
         bloque = new JPanel();
         bloque.setBounds(275, 500, 85, 20);
         bloque.setBackground(Color.DARK_GRAY);
         this.add(bloque);
     }
-
+//método para mover bloque
     public void moverBloqueDerecha() {
         if(bloque.getX()<=550){
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);           
         }       
         
     }
- 
+ //método para mover bloque
     public void moverBloqueIzquierda() {
         if(bloque.getX()>=0){
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);            
         }        
     }
    
-    
+    //método para eliminar las letras de pantalla
     public void eliminarLetra (char letra){
         for (int i = 0; i < letras.size(); i++) {
             if(letras.get(i).getText().equals(""+letra)){
