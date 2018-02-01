@@ -41,6 +41,8 @@ public class Vista extends JFrame {
         this.setTitle("LLuvia de Letras");
         this.c = c;
         this.setLayout(null);
+        this.crearMenu();
+        this.menuAddition();
         y = -10;
         this.setResizable(false);
         y = -20;
@@ -73,6 +75,22 @@ public class Vista extends JFrame {
         level4=new MenuItem("Level 4");
         level5=new MenuItem("Level 5");
     }    
+    // Añadimos los componentes de menu a la Bara de menu y a la vista.
+    public void menuAddition(){        
+        archivo.add(guardar);
+        archivo.add(cargar);
+        archivo.add(salir);
+        
+        level.add(level1);
+        level.add(level2);
+        level.add(level3);
+        level.add(level4);
+        level.add(level5);
+        
+        barraMenu.add(archivo);
+        barraMenu.add(level);
+        this.setMenuBar(barraMenu);      
+    }
     
 //método de creación de letras
     public void crearLetras(String letra) {
