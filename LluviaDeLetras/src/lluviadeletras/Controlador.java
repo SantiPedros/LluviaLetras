@@ -55,22 +55,12 @@ public class Controlador implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        //     System.out.println("ionciorwniocwnoino");
-//        System.out.println(ke.getComponent());
-//        System.out.println(ke.getKeyCode());
-        //System.out.println(ke.getKeyChar());
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             System.out.println("derechaaaa");
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
-//        } else if (ke.getKeyChar() == v.getLb().getText().charAt(0)) {
-//            System.out.println("acertaste");
-//            letraEliminar = ke.getKeyChar();
-//            //System.out.println("letra eliminar es" + letraEliminar);
-//            m.mandarLetra(letraEliminar);
-//            v.eliminarLetra(letraEliminar);
         }
         letraEliminar = ke.getKeyChar();
 
@@ -80,20 +70,10 @@ public class Controlador implements KeyListener {
                 v.eliminarLetra(letraEliminar);
             }
         }
-            System.out.println("acertaste");
-            
-            letraEliminar = ke.getKeyChar();
-            //System.out.println("letra eliminar es" + letraEliminar);
-            m.mandarLetra(letraEliminar);
-            v.eliminarLetra(letraEliminar);        
-        System.out.println( v.getLb().getText().charAt(0));
-
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
 
     }
-
-    // System.out.println("ionciorwniocwnoino");
 }

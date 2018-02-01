@@ -116,6 +116,10 @@ public class Vista extends JFrame {
         repaint();
     }
 
+    public ArrayList<Label> getLetras() {
+        return letras;
+    }
+
  
 
     public Label getLb() {
