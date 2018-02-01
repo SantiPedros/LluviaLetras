@@ -103,6 +103,7 @@ public class Vista extends JFrame {
                 lb.setText("");
             }
         }
+        this.repaint();
     }
 
  
