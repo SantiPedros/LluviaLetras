@@ -84,23 +84,29 @@ public class Vista extends JFrame {
 
     public void moverBloqueDerecha() {
         if(bloque.getX()<=550){
-            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 50, 20);
-        }
+            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);           
+        }       
+        
     }
  
     public void moverBloqueIzquierda() {
         if(bloque.getX()>=0){
-            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 50, 20);
-        }
+            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);            
+        }        
     }
+   
+    
     public void eliminarLetra (char letra){
         for (int i = 0; i < letras.size(); i++) {
             if(letras.get(i).getText().charAt(0)==letra){
+            if(letras.get(i).getText().equals(""+letra)){
                 this.remove(letras.get(i));
                 letras.remove(letras.get(i));
                 lb.setText("");
             }
         }
+        repaint();
+    }
     }
 
     public ArrayList<Label> getLetras() {

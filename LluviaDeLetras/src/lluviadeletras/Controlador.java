@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lluviadeletras;
 
 import java.awt.event.ActionEvent;
@@ -11,10 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
-/**
- *
- * @author rodry
- */
+
 public class Controlador implements KeyListener {
 
     private Vista v;
@@ -87,6 +80,13 @@ public class Controlador implements KeyListener {
                 v.eliminarLetra(letraEliminar);
             }
         }
+            System.out.println("acertaste");
+            
+            letraEliminar = ke.getKeyChar();
+            //System.out.println("letra eliminar es" + letraEliminar);
+            m.mandarLetra(letraEliminar);
+            v.eliminarLetra(letraEliminar);        
+        System.out.println( v.getLb().getText().charAt(0));
 
     }
 
