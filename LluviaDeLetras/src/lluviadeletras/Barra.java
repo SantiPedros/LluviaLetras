@@ -21,5 +21,7 @@ public class Barra extends Vista{
         barra.setBackground(Color.red);
         this.add(barra);
     }
+    
+    
    
 }

@@ -15,6 +15,7 @@ import java.util.Random;
  * @author rodry
  */
 public class Letra {
+   
     private Random r = new Random();
     private ArrayList<String> letras;
     
