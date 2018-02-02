@@ -10,12 +10,9 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
@@ -42,6 +39,8 @@ public class Vista extends JFrame {
         this.setTitle("LLuvia de Letras");
         this.c = c;
         this.setLayout(null);
+        this.crearMenu();
+        this.menuAddition();
         y = -10;
         this.setResizable(false);
         y = -20;
@@ -58,6 +57,37 @@ public class Vista extends JFrame {
         this.setBounds(50, 50, 600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
+    }
+    
+    //inicializar elementos de la Barra de Menu superior.
+    public void crearMenu(){
+        barraMenu=new MenuBar();
+        archivo=new Menu("Archivo");
+        level=new Menu("Level");
+        guardar=new MenuItem("Guardar");
+        cargar=new MenuItem("Cargar");
+        salir=new MenuItem("Salir");
+        level1=new MenuItem("Level 1");
+        level2=new MenuItem("Level 2");
+        level3=new MenuItem("Level 3");
+        level4=new MenuItem("Level 4");
+        level5=new MenuItem("Level 5");
+    }    
+    // Añadimos los componentes de menu a la Bara de menu y a la vista.
+    public void menuAddition(){        
+        archivo.add(guardar);
+        archivo.add(cargar);
+        archivo.add(salir);
+        
+        level.add(level1);
+        level.add(level2);
+        level.add(level3);
+        level.add(level4);
+        level.add(level5);
+        
+        barraMenu.add(archivo);
+        barraMenu.add(level);
+        this.setMenuBar(barraMenu);      
     }
     
 //método de creación de letras
@@ -127,10 +157,19 @@ public class Vista extends JFrame {
     public Label getLb() {
         return lb;
     }
+<<<<<<< HEAD
     public void pintarFondo(){
         System.out.println(" pintalo de amarillo ");
         this.setBackground(Color.yellow);
         this.repaint();
     }
+=======
+
+    public void pintarFondo() {
+        this.setBackground(Color.yellow);
+        repaint();
+    }
+    
+>>>>>>> d4baff0d44acfb1ec885ac005558b7ca8dff3e4b
 
 }

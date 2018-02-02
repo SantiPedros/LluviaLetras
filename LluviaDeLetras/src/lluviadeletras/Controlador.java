@@ -62,12 +62,15 @@ public class Controlador implements KeyListener {
             System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
         }
+        
         letraEliminar = ke.getKeyChar();
-
         for (int i = 0; i < v.getLetras().size(); i++) {
             if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
                 m.mandarLetra(letraEliminar);
                 v.eliminarLetra(letraEliminar);
+            }else{
+                System.out.println("ERRONEA");
+                v.pintarFondo();
             }
         
             else  if (letraEliminar != v.getLetras().get(i).getText().charAt(0)){
