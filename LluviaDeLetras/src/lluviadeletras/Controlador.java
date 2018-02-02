@@ -68,6 +68,7 @@ public class Controlador implements KeyListener {
             if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
                 m.mandarLetra(letraEliminar);
                 v.eliminarLetra(letraEliminar);
+
             }
         
             else  
@@ -76,6 +77,7 @@ public class Controlador implements KeyListener {
                             v.pintarFondo();
                                                  
                 }
+            
         }
     }
 

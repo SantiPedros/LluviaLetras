@@ -10,6 +10,8 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class Vista extends JFrame {
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
+    private Timer pintar;
 
     private int y = 0;
     private int x = 0;
@@ -170,20 +173,28 @@ public class Vista extends JFrame {
         return lb;
     }
 
-    public void pintarFondo() {
+    
+    public void pintarFondo(){
+//                pintar = new Timer(2000, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//
+//                letra = m.recogerLetra();
+//                v.crearLetras(letra);
+//            }
+//
+//        });
         System.out.println(" pintalo de amarillo ");
         this.getContentPane().setBackground(Color.yellow);
         this.repaint();
         pausa();
         this.getContentPane().setBackground(Color.white);
     }
-
     public static void pausa() {
         try {
             Thread.sleep(1500);
         } catch (Exception ignored) {
         }
-        
     }
 
 }
