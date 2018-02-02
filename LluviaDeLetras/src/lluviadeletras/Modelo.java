@@ -20,7 +20,6 @@ public class Modelo{
     public Modelo (Controlador c){
         this.c=c;
         l = new Letra();
-
     }
     
     public String recogerLetra(){

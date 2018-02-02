@@ -61,7 +61,6 @@ public class Controlador implements KeyListener {
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
-
         }
         letraEliminar = ke.getKeyChar();
 
@@ -73,6 +72,7 @@ public class Controlador implements KeyListener {
         
             else  if (letraEliminar != v.getLetras().get(i).getText().charAt(0)){
                 v.pintarFondo();
+                v.repaint();
                 }
         }
     }
@@ -81,6 +81,4 @@ public class Controlador implements KeyListener {
     public void keyReleased(KeyEvent ke) {
 
     }
-
-    // System.out.println("ionciorwniocwnoino");
 }
