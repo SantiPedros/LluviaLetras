@@ -10,6 +10,8 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JPanel;
@@ -24,13 +26,10 @@ public class Vista extends JFrame {
     private ArrayList<Label> letras;
     private Label lb;
     private JPanel barra, bloque;
-    private MenuBar barraMenu;
-    private Menu archivo,level;
-    private MenuItem salir,guardar,cargar;
-    private MenuItem level1,level2,level3,level4,level5;
-   
-    
-    
+    private JMenuBar barraMenu;
+    private JMenu archivo, level;
+    private JMenuItem salir, guardar, cargar;
+    private JMenuItem level1, level2, level3, level4, level5;
 
     private int y = 0;
     private int x = 0;
@@ -52,44 +51,55 @@ public class Vista extends JFrame {
 //    a.setBounds(60,60,200,200);
 //    letras.add(a);
 //    this.add(a);
+
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(50, 50, 600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-    
+
     //inicializar elementos de la Barra de Menu superior.
-    public void crearMenu(){
-        barraMenu=new MenuBar();
-        archivo=new Menu("Archivo");
-        level=new Menu("Level");
-        guardar=new MenuItem("Guardar");
-        cargar=new MenuItem("Cargar");
-        salir=new MenuItem("Salir");
-        level1=new MenuItem("Level 1");
-        level2=new MenuItem("Level 2");
-        level3=new MenuItem("Level 3");
-        level4=new MenuItem("Level 4");
-        level5=new MenuItem("Level 5");
-    }    
+    public void crearMenu() {
+        barraMenu = new JMenuBar();
+        archivo = new JMenu("Archivo");
+        level = new JMenu("Level");
+        guardar = new JMenuItem("Guardar");
+        cargar = new JMenuItem("Cargar");
+        salir = new JMenuItem("Salir");
+        level1 = new JMenuItem("Level 1");
+        level2 = new JMenuItem("Level 2");
+        level3 = new JMenuItem("Level 3");
+        level4 = new JMenuItem("Level 4");
+        level5 = new JMenuItem("Level 5");
+    }
+
     // Añadimos los componentes de menu a la Bara de menu y a la vista.
-    public void menuAddition(){        
+    public void menuAddition() {
+        int letra=0;
         archivo.add(guardar);
         archivo.add(cargar);
         archivo.add(salir);
-        
+
         level.add(level1);
+        level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,InputEvent.CTRL_DOWN_MASK));
         level.add(level2);
+        level2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,InputEvent.CTRL_DOWN_MASK));
         level.add(level3);
+        level3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,InputEvent.CTRL_DOWN_MASK));
         level.add(level4);
+        level4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,InputEvent.CTRL_DOWN_MASK));
         level.add(level5);
-        
+        level5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,InputEvent.CTRL_DOWN_MASK));
+      
+       
+
         barraMenu.add(archivo);
         barraMenu.add(level);
-        this.setMenuBar(barraMenu);      
+        
+        this.setJMenuBar(barraMenu);
     }
-    
+
 //método de creación de letras
     public void crearLetras(String letra) {
         System.out.println(letra);
@@ -108,6 +118,7 @@ public class Vista extends JFrame {
         this.repaint();
     }
 //creación y adición de barra inferior de la ventana
+
     public void crearBarra() {
         barra = new JPanel();
         barra.setBounds(0, 500, 600, 20);
@@ -115,6 +126,7 @@ public class Vista extends JFrame {
         this.add(barra);
     }
 //creación y adición de bloque
+
     public void crearBloque() {
         bloque = new JPanel();
         bloque.setBounds(275, 500, 85, 20);
@@ -122,23 +134,25 @@ public class Vista extends JFrame {
         this.add(bloque);
     }
 //método para mover bloque
+
     public void moverBloqueDerecha() {
-        if(bloque.getX()<=550){
-            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);           
-        }       
-        
+        if (bloque.getX() <= 550) {
+            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);
+        }
+
     }
- //método para mover bloque
+    //método para mover bloque
+
     public void moverBloqueIzquierda() {
-        if(bloque.getX()>=0){
-            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);            
-        }        
+        if (bloque.getX() >= 0) {
+            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);
+        }
     }
-   
+
     //método para eliminar las letras de pantalla
-    public void eliminarLetra (char letra){
+    public void eliminarLetra(char letra) {
         for (int i = 0; i < letras.size(); i++) {
-            if(letras.get(i).getText().equals(""+letra)){
+            if (letras.get(i).getText().equals("" + letra)) {
                 this.remove(letras.get(i));
                 letras.remove(letras.get(i));
                 lb.setText("");
@@ -152,24 +166,24 @@ public class Vista extends JFrame {
         return letras;
     }
 
- 
-
     public Label getLb() {
         return lb;
     }
-<<<<<<< HEAD
-    public void pintarFondo(){
-        System.out.println(" pintalo de amarillo ");
-        this.setBackground(Color.yellow);
-        this.repaint();
-    }
-=======
 
     public void pintarFondo() {
-        this.setBackground(Color.yellow);
-        repaint();
+        System.out.println(" pintalo de amarillo ");
+        this.getContentPane().setBackground(Color.yellow);
+        this.repaint();
+        pausa();
+        this.getContentPane().setBackground(Color.white);
     }
-    
->>>>>>> d4baff0d44acfb1ec885ac005558b7ca8dff3e4b
+
+    public static void pausa() {
+        try {
+            Thread.sleep(1500);
+        } catch (Exception ignored) {
+        }
+        
+    }
 
 }
