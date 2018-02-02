@@ -71,12 +71,8 @@ public class Controlador implements KeyListener {
             }else{
                 System.out.println("ERRONEA");
                 v.pintarFondo();
+                
             }
-        
-            else  if (letraEliminar != v.getLetras().get(i).getText().charAt(0)){
-                v.pintarFondo();
-                v.repaint();
-                }
         }
     }
 

@@ -157,19 +157,12 @@ public class Vista extends JFrame {
     public Label getLb() {
         return lb;
     }
-<<<<<<< HEAD
     public void pintarFondo(){
         System.out.println(" pintalo de amarillo ");
         this.setBackground(Color.yellow);
         this.repaint();
     }
-=======
 
-    public void pintarFondo() {
-        this.setBackground(Color.yellow);
-        repaint();
-    }
     
->>>>>>> d4baff0d44acfb1ec885ac005558b7ca8dff3e4b
 
 }
