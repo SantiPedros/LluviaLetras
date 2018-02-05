@@ -7,11 +7,6 @@ package lluviadeletras;
 
 import java.awt.Color;
 import java.awt.Label;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -58,6 +53,7 @@ public class Vista extends JFrame {
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(50, 50, 600, 600);
+        this.setBackground(Color.white);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -79,27 +75,25 @@ public class Vista extends JFrame {
 
     // Añadimos los componentes de menu a la Bara de menu y a la vista.
     public void menuAddition() {
-        int letra=0;
+        int letra = 0;
         archivo.add(guardar);
         archivo.add(cargar);
         archivo.add(salir);
 
         level.add(level1);
-        level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,InputEvent.CTRL_DOWN_MASK));
+        level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_DOWN_MASK));
         level.add(level2);
-        level2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,InputEvent.CTRL_DOWN_MASK));
+        level2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, InputEvent.CTRL_DOWN_MASK));
         level.add(level3);
-        level3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,InputEvent.CTRL_DOWN_MASK));
+        level3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, InputEvent.CTRL_DOWN_MASK));
         level.add(level4);
-        level4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,InputEvent.CTRL_DOWN_MASK));
+        level4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, InputEvent.CTRL_DOWN_MASK));
         level.add(level5);
-        level5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,InputEvent.CTRL_DOWN_MASK));
-      
-       
+        level5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5, InputEvent.CTRL_DOWN_MASK));
 
         barraMenu.add(archivo);
         barraMenu.add(level);
-        
+
         this.setJMenuBar(barraMenu);
     }
 
@@ -173,6 +167,7 @@ public class Vista extends JFrame {
         return lb;
     }
 
+<<<<<<< HEAD
     
     public void pintarFondo(){
 
@@ -180,6 +175,20 @@ public class Vista extends JFrame {
         this.getContentPane().setBackground(Color.yellow);
         this.repaint();
         //this.getContentPane().setBackground(Color.white);
+=======
+    public void pintarFondo(int x) {
+
+        if (x==1) {
+            System.out.println(" pintalo de amarillo ");
+            this.getContentPane().setBackground(Color.yellow);
+        this.repaint();
+        }else{
+                    this.getContentPane().setBackground(Color.white);
+
+        }
+        
+>>>>>>> b166fe6243d4600c79ac57079108e8107447f3a8
     }
+
 
 }
