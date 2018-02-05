@@ -162,7 +162,7 @@ public class Vista extends JFrame {
             }
         }
         this.repaint();
-        repaint();
+
     }
 
     public ArrayList<Label> getLetras() {
@@ -175,26 +175,11 @@ public class Vista extends JFrame {
 
     
     public void pintarFondo(){
-//                pintar = new Timer(2000, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//
-//                letra = m.recogerLetra();
-//                v.crearLetras(letra);
-//            }
-//
-//        });
+
         System.out.println(" pintalo de amarillo ");
         this.getContentPane().setBackground(Color.yellow);
         this.repaint();
-        pausa();
-        this.getContentPane().setBackground(Color.white);
-    }
-    public static void pausa() {
-        try {
-            Thread.sleep(1500);
-        } catch (Exception ignored) {
-        }
+        //this.getContentPane().setBackground(Color.white);
     }
 
 }
