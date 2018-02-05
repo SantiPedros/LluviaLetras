@@ -108,13 +108,24 @@ public class Vista extends JFrame {
         this.add(lb);
         letras.add(lb);
     }
-
+//caida de letras 
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
             letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 10, 25, 25);
         }
         this.repaint();
     }
+    
+    //ascenso de letras
+    public void ascensoLetras(){
+        for(int i=0;i<letras.size();i++){
+            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() -10, 25, 25);
+        }
+        this.repaint();
+    }
+    
+    
+    
 //creación y adición de barra inferior de la ventana
 
     public void crearBarra() {
@@ -147,10 +158,16 @@ public class Vista extends JFrame {
     }
     
     
-    /*
-    //método de rebote de letras.
-    public void rebotarLetras(){        
-    }*/
+    
+    //método de rebote de letras cuando tocan el bloque inferior
+    public void rebotarLetras(){   
+        for(int i=0;i<letras.size();i++){
+            if(letras.get(i).getX()==bloque.getX() && letras.get(i).getY()==bloque.getY()){
+               // ascensoLetras();
+               letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() -10, 25, 25);
+            }
+        }
+    }
     
     
     
