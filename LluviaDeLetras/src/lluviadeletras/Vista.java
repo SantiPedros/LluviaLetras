@@ -137,7 +137,6 @@ public class Vista extends JFrame {
         if (bloque.getX() <= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);
         }
-
     }
     //método para mover bloque
 
@@ -146,6 +145,15 @@ public class Vista extends JFrame {
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);
         }
     }
+    
+    
+    /*
+    //método de rebote de letras.
+    public void rebotarLetras(){        
+    }*/
+    
+    
+    
 
     //método para eliminar las letras de pantalla
     public void eliminarLetra(char letra) {
@@ -186,10 +194,6 @@ public class Vista extends JFrame {
         }else{
                     this.getContentPane().setBackground(Color.white);
 
-        }
-        
-    
+        }   
     }
-
-
 }
