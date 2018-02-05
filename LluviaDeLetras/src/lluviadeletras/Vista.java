@@ -44,6 +44,7 @@ public class Vista extends JFrame {
         letras = new ArrayList();
         crearBloque();
         crearBarra();
+
 //    letras = new ArrayList();
 //    JLabel a = new JLabel("a");
 //    a.setBounds(60,60,200,200);
@@ -52,7 +53,7 @@ public class Vista extends JFrame {
 
         this.addKeyListener(c);
         this.setResizable(false);
-        this.setBounds(50, 50, 600, 600);
+        this.setBounds(250, 80, 600, 600);
         this.setBackground(Color.white);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -159,15 +160,15 @@ public class Vista extends JFrame {
 
     }
 
-    public ArrayList<Label> getLetras() {
+    public ArrayList<Label> getLetras(){
         return letras;
     }
 
-    public Label getLb() {
+    public Label getLb(){
         return lb;
     }
 
-<<<<<<< HEAD
+
     
     public void pintarFondo(){
 
@@ -175,9 +176,9 @@ public class Vista extends JFrame {
         this.getContentPane().setBackground(Color.yellow);
         this.repaint();
         //this.getContentPane().setBackground(Color.white);
-=======
-    public void pintarFondo(int x) {
+    }
 
+    public void pintarFondo(int x) {
         if (x==1) {
             System.out.println(" pintalo de amarillo ");
             this.getContentPane().setBackground(Color.yellow);
@@ -187,7 +188,7 @@ public class Vista extends JFrame {
 
         }
         
->>>>>>> b166fe6243d4600c79ac57079108e8107447f3a8
+    
     }
 
 
