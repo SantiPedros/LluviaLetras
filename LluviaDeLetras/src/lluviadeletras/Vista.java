@@ -167,28 +167,15 @@ public class Vista extends JFrame {
         return lb;
     }
 
-<<<<<<< HEAD
-    
-    public void pintarFondo(){
-
-        System.out.println(" pintalo de amarillo ");
-        this.getContentPane().setBackground(Color.yellow);
-        this.repaint();
-        //this.getContentPane().setBackground(Color.white);
-=======
     public void pintarFondo(int x) {
-
-        if (x==1) {
+        if (x == 1) {
             System.out.println(" pintalo de amarillo ");
             this.getContentPane().setBackground(Color.yellow);
-        this.repaint();
-        }else{
-                    this.getContentPane().setBackground(Color.white);
-
+            this.repaint();
+        } else {
+            this.getContentPane().setBackground(Color.white);
         }
-        
->>>>>>> b166fe6243d4600c79ac57079108e8107447f3a8
-    }
 
+    }
 
 }
