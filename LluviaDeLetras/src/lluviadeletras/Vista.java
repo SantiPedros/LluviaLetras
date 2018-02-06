@@ -150,12 +150,15 @@ public class Vista extends JFrame {
     public void eliminarLetra(char letra) {
         for (int i = 0; i < letras.size(); i++) {
             if (letras.get(i).getText().equals("" + letra)) {
+                System.out.println(letras.get(i).getText().toString());
+               
                 this.remove(letras.get(i));
                 letras.remove(letras.get(i));
                 lb.setText("");
             }
+            this.repaint();
         }
-        this.repaint();
+        
 
     }
 
@@ -166,16 +169,6 @@ public class Vista extends JFrame {
     public Label getLb() {
         return lb;
     }
-
-<<<<<<< HEAD
-    
-    public void pintarFondo(){
-
-        System.out.println(" pintalo de amarillo ");
-        this.getContentPane().setBackground(Color.yellow);
-        this.repaint();
-        //this.getContentPane().setBackground(Color.white);
-=======
     public void pintarFondo(int x) {
 
         if (x==1) {
@@ -187,7 +180,6 @@ public class Vista extends JFrame {
 
         }
         
->>>>>>> b166fe6243d4600c79ac57079108e8107447f3a8
     }
 
 
