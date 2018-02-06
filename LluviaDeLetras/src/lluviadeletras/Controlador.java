@@ -1,4 +1,3 @@
-
 package lluviadeletras;
 
 import java.awt.event.ActionEvent;
@@ -7,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
-
 public class Controlador implements KeyListener {
 
     private Vista v;
@@ -15,6 +13,9 @@ public class Controlador implements KeyListener {
     private Timer timer, timer2;
     private String letra;
     private char letraEliminar;
+    private int aciertos = 0;
+    private boolean encontrada=false;
+    private int velocidadCaida = 100;
 
     public Controlador() {
         v = new Vista(this);
@@ -30,7 +31,7 @@ public class Controlador implements KeyListener {
         });
         timer.start();
 
-        timer2 = new Timer(100, new ActionListener() {
+        timer2 = new Timer(velocidadCaida, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 v.cambiarY();
@@ -38,6 +39,10 @@ public class Controlador implements KeyListener {
 
         });
         timer2.start();
+    }
+
+    public int getVelocidadCaida() {
+        return velocidadCaida;
     }
 
     public String getLetra() {
@@ -48,35 +53,52 @@ public class Controlador implements KeyListener {
         this.letra = letra;
     }
 
+    public void aumentarVelocidad() {
+        velocidadCaida += 500;
+    }
+
     @Override
     public void keyTyped(KeyEvent ke) {
-        //System.out.println("ionciorwniocwnoino"); 
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println("derechaaaa");
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            System.out.println("izquierdaaaaa");
             v.moverBloqueIzquierda();
-        }
-        
-        letraEliminar = ke.getKeyChar();
-        for (int i = 0; i < v.getLetras().size(); i++) {
-            if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
-                m.mandarLetra(letraEliminar);
-                v.eliminarLetra(letraEliminar);
-            }else if (letraEliminar != v.getLetras().get(i).getText().charAt(0)){
-                    v.pintarFondo(1);                      
+        } else if(ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK ||ke.getKeyCode()==KeyEvent.VK_SHIFT)  {
+            System.out.println("solo activa mayus");
+        } else {
+            letraEliminar = ke.getKeyChar();
+            for (int i = 0; i < v.getLetras().size(); i++) {
+                if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
+                    m.mandarLetra(letraEliminar);
+                    v.eliminarLetra(letraEliminar);
+                    aciertos++;
+                    if (aciertos == 10) {//para cada 10 aciertos subir el nivel
+                        aciertos = 0;
+                        m.subirNivel();
+                        aumentarVelocidad();
+                    }
+                    encontrada=true;
+                } 
+            }
+            if (!encontrada) {
+                    v.pintarFondo(1);
+                    aciertos--;
+                    encontrada=false;
                 }
-            
         }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
         v.pintarFondo(0);
+    }
+
+    public void pararTimers() {
+        timer.stop();
+        timer2.stop();
     }
 }

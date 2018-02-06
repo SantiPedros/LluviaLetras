@@ -5,8 +5,6 @@
  */
 package lluviadeletras;
 
-
-import java.awt.Label;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,23 +13,21 @@ import java.util.Random;
  * @author rodry
  */
 public class Letra {
-   
+
     private Random r = new Random();
     private ArrayList<String> letras;
-    
+    private int nivel=1;
 
-    public Letra(){
-           letras= new ArrayList();
-        //System.out.println("hola ");
+    public Letra() {
+        letras = new ArrayList();
     }
     
-    public String letraRandom(int nivel) {
-     
-        int x=nivel*5;
+
+    public String letraRandom() {
         String letra;
         Boolean rep;
         do {
-            letra = ((char) (r.nextInt(x) + 'A')) + "";
+            letra = ((char) (r.nextInt(nivel * 5) + 'A')) + "";
             rep = false;
             for (int i = 0; i < letras.size(); i++) {
                 if (letras.get(i).equals(letra)) {
@@ -43,12 +39,22 @@ public class Letra {
         letras.add(letra);
         return letra;
     }
-    
-    public void quitarLetraArray(char letra){
+
+    public void quitarLetraArray(char letra) {
         for (int i = 0; i < letras.size(); i++) {
-            if(letras.get(i).charAt(0)==(letra)){
+            if (letra == letras.get(i).charAt(0)) {
                 letras.remove(letras.get(i));
             }
         }
     }
+
+    //aumentar nivel hasta 5, que se queda estable
+    public void setNivel() {
+        nivel++;
+        if(nivel>=5){
+            nivel=5;
+        }
+    }
+    
+    
 }
