@@ -19,7 +19,8 @@ public class Vista extends JFrame {
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
-    private JPanel barra, bloque;
+   
+    private JPanel barra, bloque,salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
@@ -184,9 +185,7 @@ public class Vista extends JFrame {
             }
             this.repaint();
         }
-        
-
-        }
+       }
     }
 
     public ArrayList<Label> getLetras() {
