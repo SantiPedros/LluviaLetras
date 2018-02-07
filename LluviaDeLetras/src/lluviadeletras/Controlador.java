@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
-public class Controlador implements KeyListener {
+public class Controlador implements KeyListener,ActionListener {
 
     private Vista v;
     private Modelo m;
@@ -100,5 +100,26 @@ public class Controlador implements KeyListener {
     public void pararTimers() {
         timer.stop();
         timer2.stop();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        switch(ae.getActionCommand()){
+            case "Salir":
+                System.out.println("PanelSalida");
+                v.CrearPanelSalida();
+                
+                //v.getSalida().setFocusable(true);
+                break;
+                
+            case "SI":
+                System.exit(0);
+                break;
+                
+            case "NO":
+                v.getSalida().setFocusable(false);
+                v.getSalida().setVisible(false);
+                break;
+        }
     }
 }

@@ -19,7 +19,7 @@ public class Vista extends JFrame {
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
-   
+    private JButton si,no;
     private JPanel barra, bloque,salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
@@ -37,6 +37,7 @@ public class Vista extends JFrame {
         this.setLayout(null);
         this.crearMenu();
         this.menuAddition();
+        this.CrearPanelSalida();
         this.setResizable(false);
         letras = new ArrayList();
         crearBloque();
@@ -63,6 +64,7 @@ public class Vista extends JFrame {
         guardar = new JMenuItem("Guardar");
         cargar = new JMenuItem("Cargar");
         salir = new JMenuItem("Salir");
+        salir.addActionListener(c);
         level1 = new JMenuItem("Level 1");
         level2 = new JMenuItem("Level 2");
         level3 = new JMenuItem("Level 3");
@@ -209,6 +211,26 @@ public class Vista extends JFrame {
 
 
     }
+    
+    
+    //PANEL DE SALIDA
+    public void CrearPanelSalida(){
+        JLabel mensaje=new JLabel("SEGURO QUE DESEA SALIR DEL JUEGO?");
+        mensaje.setFont(mensaje.getFont().deriveFont(30.0f));
+        mensaje.setBounds(50, 100, 450, 45);
+        si=new JButton("SI");
+        no=new JButton("NO");
+        si.setBounds(140, 210, 90 ,35);
+        no.setBounds(290, 210, 90 ,35);
+        si.addActionListener(c);
+        no.addActionListener(c);
+        salida=new JPanel();
+        salida.setLayout(null);
+        salida.setBounds(0, 0, 600 , 600);
+        //salida.setFocusable(false);
+        salida.setVisible(true);
+        this.add(salida);
+    }
 
 //FIN DEL JUEGO
     public void gameOver() {
@@ -220,4 +242,10 @@ public class Vista extends JFrame {
         add(b);
         this.repaint();
     }
+
+    public JPanel getSalida() {
+        return salida;
+    }
+    
+    
 }
