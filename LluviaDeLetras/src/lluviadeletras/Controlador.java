@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
-public class Controlador implements KeyListener,ActionListener {
+public class Controlador implements KeyListener, ActionListener {
 
     private Vista v;
     private Modelo m;
@@ -14,7 +14,7 @@ public class Controlador implements KeyListener,ActionListener {
     private String letra;
     private char letraEliminar;
     private int aciertos = 0;
-    private boolean encontrada=false;
+    private boolean encontrada = false;
     private int velocidadCaida = 100;
 
     public Controlador() {
@@ -67,7 +67,7 @@ public class Controlador implements KeyListener,ActionListener {
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             v.moverBloqueIzquierda();
-        } else if(ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK ||ke.getKeyCode()==KeyEvent.VK_SHIFT)  {
+        } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT) {
             System.out.println("solo activa mayus");
         } else {
             letraEliminar = ke.getKeyChar();
@@ -81,14 +81,14 @@ public class Controlador implements KeyListener,ActionListener {
                         m.subirNivel();
                         aumentarVelocidad();
                     }
-                    encontrada=true;
-                } 
+                    encontrada = true;
+                }
             }
             if (!encontrada) {
-                    v.pintarFondo(1);
-                    aciertos--;
-                    encontrada=false;
-                }
+                v.pintarFondo(1);
+                aciertos--;
+                encontrada = false;
+            }
         }
     }
 
@@ -96,7 +96,7 @@ public class Controlador implements KeyListener,ActionListener {
     public void keyReleased(KeyEvent ke) {
         v.pintarFondo(0);
     }
-
+    
     public void pararTimers() {
         timer.stop();
         timer2.stop();
@@ -104,20 +104,19 @@ public class Controlador implements KeyListener,ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        switch(ae.getActionCommand()){
+        switch (ae.getActionCommand()) {
             case "Salir":
                 System.out.println("PanelSalida");
                 v.CrearPanelSalida();
-                
                 //v.getSalida().setFocusable(true);
                 break;
-                
+
             case "SI":
                 System.exit(0);
                 break;
-                
+
             case "NO":
-                v.getSalida().setFocusable(false);
+                //v.getSalida().setFocusable(false);
                 v.getSalida().setVisible(false);
                 break;
         }

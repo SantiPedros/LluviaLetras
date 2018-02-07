@@ -19,8 +19,8 @@ public class Vista extends JFrame {
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
-    private JButton si,no;
-    private JPanel barra, bloque,salida;
+    private JButton si, no;
+    private JPanel barra, bloque, salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
@@ -37,7 +37,7 @@ public class Vista extends JFrame {
         this.setLayout(null);
         this.crearMenu();
         this.menuAddition();
-        this.CrearPanelSalida();
+
         this.setResizable(false);
         letras = new ArrayList();
         crearBloque();
@@ -51,7 +51,7 @@ public class Vista extends JFrame {
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(250, 80, 600, 600);
-        this.setBackground(Color.white);
+        this.getContentPane().setBackground(Color.blue);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -95,21 +95,25 @@ public class Vista extends JFrame {
         this.setJMenuBar(barraMenu);
     }
 
-//método de creación de letras
+    //método de creación de letras
     public void crearLetras(String letra) {
         System.out.println(letra);
         x = (int) (Math.random() * 575);
         lb = new Label();
         lb.setText(letra);
-        lb.setBounds(x, 10, 25, 25);
+        lb.setBounds(x, 10, 30, 30);
+        lb.setBackground(Color.orange);
         this.add(lb);
+        lb.setFont(lb.getFont().deriveFont(30.0f));
+        lb.setForeground(Color.blue);
         letras.add(lb);
     }
-//caida de letras 
 
+
+    //caida de letras 
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 10, 25, 25);
+            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 10, 30, 30);
             if (letras.get(i).getY() >= 500 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
             } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
@@ -131,33 +135,35 @@ public class Vista extends JFrame {
         timer.start();
     }
 
-//creación y adición de barra inferior de la ventana
+
+    //creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
-        barra.setBounds(0, 500, 600, 20);
-        barra.setBackground(Color.red);
+        barra.setBounds(0, 500, 600, 30);
+        barra.setBackground(Color.lightGray);
         this.add(barra);
     }
-//creación y adición de bloque
-
+    
+    //creación y adición de bloque
     public void crearBloque() {
         bloque = new JPanel();
-        bloque.setBounds(275, 500, 85, 20);
-        bloque.setBackground(Color.DARK_GRAY);
+        bloque.setBounds(275, 500, 90, 30);
+        bloque.setBackground(Color.gray);
         this.add(bloque);
     }
-//método para mover bloque
-
+    
+    //método para mover bloque
     public void moverBloqueDerecha() {
         if (bloque.getX() <= 550) {
-            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 85, 20);
+            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 30);
         }
     }
+   
+    
     //método para mover bloque
-
     public void moverBloqueIzquierda() {
         if (bloque.getX() >= 0) {
-            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 85, 20);
+            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 30);
         }
     }
 
@@ -178,55 +184,48 @@ public class Vista extends JFrame {
             if (letras.get(i).getText().equals("" + letra)) {
                 System.out.println(letras.get(i).getText().toString());
 
-                
-            if (letra == letras.get(i).getText().charAt(0)) {
+                if (letra == letras.get(i).getText().charAt(0)) {
 
-                this.remove(letras.get(i));
-                letras.remove(letras.get(i));
-                remove(lb);
+                    this.remove(letras.get(i));
+                    letras.remove(letras.get(i));
+                    remove(lb);
+                }
+                this.repaint();
             }
-            this.repaint();
         }
-       }
     }
 
-    public ArrayList<Label> getLetras() {
-        return letras;
-    }
-
-    public Label getLb() {
-        return lb;
-    }
-
+    
+    //Método para cambiar el color de fondo según se pulse o no la tecla correcta.
     public void pintarFondo(int x) {
         if (x == 1) {//fallo
-            this.getContentPane().setBackground(Color.yellow);
+            this.getContentPane().setBackground(Color.orange);
             this.repaint();
 
         } else {//volver a pintar blanco
-            this.getContentPane().setBackground(Color.white);
+            this.getContentPane().setBackground(Color.blue);
             this.repaint();
-
         }
-
-
     }
-    
-    
-    //PANEL DE SALIDA
-    public void CrearPanelSalida(){
-        JLabel mensaje=new JLabel("SEGURO QUE DESEA SALIR DEL JUEGO?");
+
+    //PANEL DE SALIDA. Se generará al pulsar "Salir" en el menú
+    public void CrearPanelSalida() {
+        salida = new JPanel();
+        JLabel mensaje = new JLabel("SEGURO QUE DESEA SALIR?");
         mensaje.setFont(mensaje.getFont().deriveFont(30.0f));
-        mensaje.setBounds(50, 100, 450, 45);
-        si=new JButton("SI");
-        no=new JButton("NO");
-        si.setBounds(140, 210, 90 ,35);
-        no.setBounds(290, 210, 90 ,35);
+        mensaje.setBounds(75, 100, 500, 45);
+        si = new JButton("SI");
+        no = new JButton("NO");
+        si.setBounds(170, 210, 90, 35);
+        no.setBounds(320, 210, 90, 35);
         si.addActionListener(c);
         no.addActionListener(c);
-        salida=new JPanel();
+        salida.add(mensaje);
+        salida.add(si);
+        salida.add(no);
         salida.setLayout(null);
-        salida.setBounds(0, 0, 600 , 600);
+        salida.setBounds(0, 0, 600, 600);
+        salida.setBackground(Color.orange);
         //salida.setFocusable(false);
         salida.setVisible(true);
         this.add(salida);
@@ -237,9 +236,12 @@ public class Vista extends JFrame {
         //this.getContentPane().removeAll();
         this.getContentPane().setEnabled(false);
         c.pararTimers();
-        JLabel b = new JLabel("GAMEOVER");
-        b.setBounds(300, 300, 100, 20);
+        JLabel b = new JLabel("GAME OVER!");
+        b.setFont(b.getFont().deriveFont(40.0f));
+        b.setForeground(Color.red);
+        b.setBounds(170, 260, 280, 50);
         add(b);
+        this.getContentPane().setBackground(Color.black);
         this.repaint();
     }
 
@@ -247,5 +249,12 @@ public class Vista extends JFrame {
         return salida;
     }
     
-    
+    public ArrayList<Label> getLetras() {
+        return letras;
+    }
+
+    public Label getLb() {
+        return lb;
+    }
+
 }
