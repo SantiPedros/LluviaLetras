@@ -5,10 +5,6 @@
  */
 package lluviadeletras;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-
 /**
  *
  * @author rodry
@@ -23,7 +19,7 @@ public class Modelo{
     }
     
     public String recogerLetra(){
-        letra = l.letraRandom(1);
+        letra = l.letraRandom();
         return letra;
     }
     
@@ -31,6 +27,8 @@ public class Modelo{
         l.quitarLetraArray(letra);
     }
 
-    
+    public void subirNivel(){
+        l.setNivel();
+    }
     
 }
