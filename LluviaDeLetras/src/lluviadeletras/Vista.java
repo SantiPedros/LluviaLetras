@@ -50,7 +50,7 @@ public class Vista extends JFrame {
 //    this.add(a);
         this.addKeyListener(c);
         this.setResizable(false);
-        this.setBounds(250, 80, 600, 600);
+        this.setBounds(380, 80, 600, 600);
         this.getContentPane().setBackground(Color.blue);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -72,7 +72,7 @@ public class Vista extends JFrame {
         level5 = new JMenuItem("Level 5");
     }
 
-    // Añadimos los componentes de menu a la Bara de menu y a la vista.
+    // Añadimos los componentes de menu a la Barra de menu y a la vista.
     public void menuAddition() {
         archivo.add(guardar);
         archivo.add(cargar);
