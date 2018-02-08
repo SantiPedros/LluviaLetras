@@ -73,12 +73,19 @@ public class Vista extends JFrame {
         level4 = new JMenuItem("Level 4");
         level5 = new JMenuItem("Level 5");
         fraseNivel = new JLabel("NIVEL 1");
-        fraseNivel.setBounds(400, 100, 100, 100);
+        fraseNivel.setBounds(490, 15, 100, 20);
+        fraseNivel.setForeground(Color.orange);
+        fraseNivel.setFont(fraseNivel.getFont().deriveFont(15.0f));
         vidas = new JLabel("VIDAS: ");
-        vidas.setBounds(100, 490, 100, 100);
+        vidas.setFont(vidas.getFont().deriveFont(15.0f));
+        vidas.setForeground(Color.white);
+        vidas.setBounds(15, 15,55,20);
         this.add(vidas);
         contadorVidas = new JLabel("10");
-        contadorVidas.setBounds(200, 490, 100, 100);
+        contadorVidas.setBounds(70, 15, 100,20);
+        contadorVidas.setFont(contadorVidas.getFont().deriveFont(15.0f));
+        contadorVidas.setForeground(Color.white);
+        
         this.add(contadorVidas);
         this.add(fraseNivel);
         contadorV = 10;
