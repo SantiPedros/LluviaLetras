@@ -80,21 +80,21 @@ public class Controlador implements KeyListener, ActionListener {
                         aciertos = 0;
                         m.cambiarNivel(nivel);
                         nivel++;
-                       aumentarVelocidad();
+                        aumentarVelocidad();
                     }
                     encontrada = true;
-                }
-            }
-            if (!encontrada) {
-                v.pintarFondo(1);
-                aciertos--;
-                vidas--;
-                if (vidas <= 0) {
 
-                    v.gameOver();
+                } else {
+                    v.pintarFondo(1);
+                    aciertos--;
+                    vidas--;
+                    if (vidas <= 0) {
+
+                        v.gameOver();
+                    }
+                    v.restaVidas();
+                    encontrada = false;
                 }
-                v.restaVidas();
-                encontrada = false;
             }
         }
     }
@@ -142,7 +142,7 @@ public class Controlador implements KeyListener, ActionListener {
                 m.cambiarNivel(3);
                 break;
             case "Level 4":
-                velocidadCaida = 1600; 
+                velocidadCaida = 1600;
                 v.cambiarNivel("NIVEL 4");
                 m.cambiarNivel(4);
                 break;

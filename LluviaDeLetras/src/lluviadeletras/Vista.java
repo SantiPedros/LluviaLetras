@@ -15,6 +15,7 @@ import javax.swing.JPanel;
  * @author rodry
  */
 public class Vista extends JFrame {
+
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
@@ -49,7 +50,6 @@ public class Vista extends JFrame {
 //    a.setBounds(60,60,200,200);
 //    letras.add(a);
 //    this.add(a);
-
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(380, 80, 600, 600);
@@ -92,7 +92,7 @@ public class Vista extends JFrame {
     }
 
     // Añadimos los componentes de menu a la Barra de menu y a la vista.
-    public void menuAddition(){
+    public void menuAddition() {
         archivo.add(guardar);
         archivo.add(cargar);
         archivo.add(salir);
@@ -113,7 +113,7 @@ public class Vista extends JFrame {
         level4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, InputEvent.CTRL_DOWN_MASK));
         level.add(level5);
         level5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5, InputEvent.CTRL_DOWN_MASK));
-        
+
         barraMenu.add(archivo);
         barraMenu.add(level);
         this.setJMenuBar(barraMenu);
@@ -153,6 +153,10 @@ public class Vista extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 10, 25, 25);
+                if (letras.get(i).getY() <= 0) {
+                    System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
+                    gameOver();
+                }
             }
         });
         timer.start();
@@ -180,11 +184,7 @@ public class Vista extends JFrame {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 30);
         }
 
-    }   
-    
-
-    
-
+    }
 
     //método para mover bloque
     public void moverBloqueIzquierda() {
@@ -197,9 +197,16 @@ public class Vista extends JFrame {
     public void rebotarLetras() {
         for (int i = 0; i < letras.size(); i++) {
             if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()) {
-                // ascensoLetras();
+                System.out.println("SUBEN");
                 letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 10, 25, 25);
+                if (letras.get(i).getY() <= 0) {
+                    System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
+                    gameOver();
+                } else {
+                    System.out.println("asdfasdf");
+                }
             }
+
         }
     }
 
@@ -207,11 +214,10 @@ public class Vista extends JFrame {
     public void eliminarLetra(char letra) {
         for (int i = 0; i < letras.size(); i++) {
 
-
             if (letra == letras.get(i).getText().charAt(0)) {
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
-                
+
                 letras.remove(i);
             }
         }
@@ -237,12 +243,12 @@ public class Vista extends JFrame {
         mensaje.setFont(mensaje.getFont().deriveFont(30.0f));
         mensaje.setForeground(Color.white);
         mensaje.setBounds(75, 100, 500, 45);
-        si = new JButton("SI");        
+        si = new JButton("SI");
         no = new JButton("NO");
         si.setFont(si.getFont().deriveFont(25.0f));
         no.setFont(si.getFont().deriveFont(25.0f));
         si.setBounds(170, 210, 90, 35);
-        no.setBounds(330, 210, 90, 35);        
+        no.setBounds(330, 210, 90, 35);
         no.setForeground(Color.white);
         si.setBackground(Color.green);
         no.setBackground(Color.red);
@@ -256,7 +262,7 @@ public class Vista extends JFrame {
         salida.setBackground(Color.darkGray);
         //salida.setFocusable(false);
         salida.setVisible(true);
-        this.add(salida);        
+        this.add(salida);
     }
 
 //FIN DEL JUEGO
