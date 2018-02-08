@@ -20,13 +20,14 @@ public class Vista extends JFrame {
     private ArrayList<Label> letras;
     private Label lb;
     private JButton si, no;
+    private JLabel fraseNivel, vidas, contadorVidas;
     private JPanel barra, bloque, salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
     private Timer pintar;
-
+    private int contadorV = 0;
     private int y = 0;
     private int x = 0;
 
@@ -70,6 +71,16 @@ public class Vista extends JFrame {
         level3 = new JMenuItem("Level 3");
         level4 = new JMenuItem("Level 4");
         level5 = new JMenuItem("Level 5");
+        fraseNivel = new JLabel("NIVEL 1");
+        fraseNivel.setBounds(400, 100, 100, 100);
+        vidas = new JLabel("VIDAS: ");
+        vidas.setBounds(100, 480, 100, 100);
+        this.add(vidas);
+        contadorVidas = new JLabel("10");
+        contadorVidas.setBounds(200, 480, 100, 100);
+        this.add(contadorVidas);
+        this.add(fraseNivel);
+        contadorV = 10;
     }
 
     // Añadimos los componentes de menu a la Barra de menu y a la vista.
@@ -77,6 +88,12 @@ public class Vista extends JFrame {
         archivo.add(guardar);
         archivo.add(cargar);
         archivo.add(salir);
+
+        level1.addActionListener(c);
+        level2.addActionListener(c);
+        level3.addActionListener(c);
+        level4.addActionListener(c);
+        level5.addActionListener(c);
 
         level.add(level1);
         level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_DOWN_MASK));
@@ -109,7 +126,6 @@ public class Vista extends JFrame {
         letras.add(lb);
     }
 
-
     //caida de letras 
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
@@ -135,7 +151,6 @@ public class Vista extends JFrame {
         timer.start();
     }
 
-
     //creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
@@ -143,7 +158,7 @@ public class Vista extends JFrame {
         barra.setBackground(Color.lightGray);
         this.add(barra);
     }
-    
+
     //creación y adición de bloque
     public void crearBloque() {
         bloque = new JPanel();
@@ -151,15 +166,14 @@ public class Vista extends JFrame {
         bloque.setBackground(Color.gray);
         this.add(bloque);
     }
-    
+
     //método para mover bloque
     public void moverBloqueDerecha() {
         if (bloque.getX() <= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 30);
         }
     }
-   
-    
+
     //método para mover bloque
     public void moverBloqueIzquierda() {
         if (bloque.getX() >= 0) {
@@ -195,7 +209,6 @@ public class Vista extends JFrame {
         }
     }
 
-    
     //Método para cambiar el color de fondo según se pulse o no la tecla correcta.
     public void pintarFondo(int x) {
         if (x == 1) {//fallo
@@ -248,13 +261,33 @@ public class Vista extends JFrame {
     public JPanel getSalida() {
         return salida;
     }
-    
+
     public ArrayList<Label> getLetras() {
         return letras;
     }
 
     public Label getLb() {
         return lb;
+    }
+
+    public void cambiarNivel(String frase) {
+        fraseNivel.setText(frase);
+    }
+//    public void sumarAciertos(){
+//        contadorAciertos++;
+//        contadorPuntos.setText(String.valueOf(contadorAciertos));
+//        
+//        
+//    }
+
+    public void restaVidas() {
+        contadorV--;
+        if (contadorV > 0) {
+            contadorVidas.setText(String.valueOf(contadorV));
+        } else {
+            contadorVidas.setText(String.valueOf("0"));
+        }
+
     }
 
 }

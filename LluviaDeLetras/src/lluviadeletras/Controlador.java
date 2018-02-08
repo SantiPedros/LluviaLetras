@@ -14,6 +14,7 @@ public class Controlador implements KeyListener, ActionListener {
     private String letra;
     private char letraEliminar;
     private int aciertos = 0;
+    private int vidas = 10;
     private boolean encontrada = false;
     private int velocidadCaida = 100;
 
@@ -87,6 +88,12 @@ public class Controlador implements KeyListener, ActionListener {
             if (!encontrada) {
                 v.pintarFondo(1);
                 aciertos--;
+                vidas--;
+                if (vidas <= 0) {
+
+                    v.gameOver();
+                }
+                v.restaVidas();
                 encontrada = false;
             }
         }
@@ -96,7 +103,7 @@ public class Controlador implements KeyListener, ActionListener {
     public void keyReleased(KeyEvent ke) {
         v.pintarFondo(0);
     }
-    
+
     public void pararTimers() {
         timer.stop();
         timer2.stop();
@@ -118,6 +125,31 @@ public class Controlador implements KeyListener, ActionListener {
             case "NO":
                 //v.getSalida().setFocusable(false);
                 v.getSalida().setVisible(false);
+                break;
+            case "Level 1":
+                velocidadCaida = 100;
+                v.cambiarNivel("NIVEL 1");
+                m.cambiarNivel1();
+                break;
+            case "Level 2":
+                velocidadCaida = 600;
+                v.cambiarNivel("NIVEL 2");
+                m.cambiarNivel2();
+                break;
+            case "Level 3":
+                velocidadCaida = 1100;
+                v.cambiarNivel("NIVEL 3");
+                m.cambiarNivel3();
+                break;
+            case "Level 4":
+                velocidadCaida = 1600;
+                v.cambiarNivel("NIVEL 4");
+                m.cambiarNivel4();
+                break;
+            case "Level 5":
+                velocidadCaida = 2100;
+                v.cambiarNivel("NIVEL 5");
+                m.cambiarNivel5();
                 break;
         }
     }

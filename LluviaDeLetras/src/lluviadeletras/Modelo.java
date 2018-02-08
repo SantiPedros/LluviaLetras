@@ -30,5 +30,25 @@ public class Modelo{
     public void subirNivel(){
         l.setNivel();
     }
+        public void cambiarNivel1() {
+        l.nivel1();
+    }
+
+    public void cambiarNivel2() {
+        l.nivel2();
+    }
+
+    public void cambiarNivel3() {
+        l.nivel3();
+    }
+
+    public void cambiarNivel4() {
+        l.nivel4();
+
+    }
+
+    public void cambiarNivel5() {
+        l.nivel5();
+    }
     
 }
