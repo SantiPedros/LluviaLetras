@@ -15,7 +15,6 @@ import javax.swing.JPanel;
  * @author rodry
  */
 public class Vista extends JFrame {
-
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
@@ -26,7 +25,6 @@ public class Vista extends JFrame {
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
     private Timer pintar;
-
     private int y = 0;
     private int x = 0;
 
@@ -37,7 +35,6 @@ public class Vista extends JFrame {
         this.setLayout(null);
         this.crearMenu();
         this.menuAddition();
-
         this.setResizable(false);
         letras = new ArrayList();
         crearBloque();
@@ -48,6 +45,7 @@ public class Vista extends JFrame {
 //    a.setBounds(60,60,200,200);
 //    letras.add(a);
 //    this.add(a);
+
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(380, 80, 600, 600);
@@ -73,11 +71,10 @@ public class Vista extends JFrame {
     }
 
     // Añadimos los componentes de menu a la Barra de menu y a la vista.
-    public void menuAddition() {
+    public void menuAddition(){
         archivo.add(guardar);
         archivo.add(cargar);
         archivo.add(salir);
-
         level.add(level1);
         level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_DOWN_MASK));
         level.add(level2);
@@ -88,10 +85,9 @@ public class Vista extends JFrame {
         level4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, InputEvent.CTRL_DOWN_MASK));
         level.add(level5);
         level5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5, InputEvent.CTRL_DOWN_MASK));
-
+        
         barraMenu.add(archivo);
         barraMenu.add(level);
-
         this.setJMenuBar(barraMenu);
     }
 
@@ -102,13 +98,12 @@ public class Vista extends JFrame {
         lb = new Label();
         lb.setText(letra);
         lb.setBounds(x, 10, 30, 30);
-        lb.setBackground(Color.orange);
+        lb.setBackground(Color.blue);
         this.add(lb);
         lb.setFont(lb.getFont().deriveFont(30.0f));
-        lb.setForeground(Color.blue);
+        lb.setForeground(Color.white);
         letras.add(lb);
     }
-
 
     //caida de letras 
     public void cambiarY() {
@@ -135,7 +130,6 @@ public class Vista extends JFrame {
         timer.start();
     }
 
-
     //creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
@@ -157,8 +151,7 @@ public class Vista extends JFrame {
         if (bloque.getX() <= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 30);
         }
-    }
-   
+    }   
     
     //método para mover bloque
     public void moverBloqueIzquierda() {
@@ -184,17 +177,15 @@ public class Vista extends JFrame {
             if (letras.get(i).getText().equals("" + letra)) {
                 System.out.println(letras.get(i).getText().toString());
 
-                if (letra == letras.get(i).getText().charAt(0)) {
-
-                    this.remove(letras.get(i));
+                if (letra == letras.get(i).getText().charAt(0)) {                   
+                    this.remove(letras.get(i));     
                     letras.remove(letras.get(i));
-                    remove(lb);
+                    remove(lb);                    
                 }
                 this.repaint();
             }
         }
     }
-
     
     //Método para cambiar el color de fondo según se pulse o no la tecla correcta.
     public void pintarFondo(int x) {
@@ -210,14 +201,21 @@ public class Vista extends JFrame {
 
     //PANEL DE SALIDA. Se generará al pulsar "Salir" en el menú
     public void CrearPanelSalida() {
+        this.repaint();
         salida = new JPanel();
         JLabel mensaje = new JLabel("SEGURO QUE DESEA SALIR?");
         mensaje.setFont(mensaje.getFont().deriveFont(30.0f));
+        mensaje.setForeground(Color.white);
         mensaje.setBounds(75, 100, 500, 45);
-        si = new JButton("SI");
+        si = new JButton("SI");        
         no = new JButton("NO");
+        si.setFont(si.getFont().deriveFont(25.0f));
+        no.setFont(si.getFont().deriveFont(25.0f));
         si.setBounds(170, 210, 90, 35);
-        no.setBounds(320, 210, 90, 35);
+        no.setBounds(330, 210, 90, 35);        
+        no.setForeground(Color.white);
+        si.setBackground(Color.green);
+        no.setBackground(Color.red);
         si.addActionListener(c);
         no.addActionListener(c);
         salida.add(mensaje);
@@ -225,10 +223,10 @@ public class Vista extends JFrame {
         salida.add(no);
         salida.setLayout(null);
         salida.setBounds(0, 0, 600, 600);
-        salida.setBackground(Color.orange);
+        salida.setBackground(Color.darkGray);
         //salida.setFocusable(false);
         salida.setVisible(true);
-        this.add(salida);
+        this.add(salida);        
     }
 
 //FIN DEL JUEGO
