@@ -57,32 +57,10 @@ public class Letra {
             nivel=5;
         }
     }
-        public void nivel1() {
+        public void cambiarNivel(int x) {
             //velocidadCaida = 100;
-            nivel = 1;
+            nivel = x;
             
-    }
-
-    public void nivel2() {
-           // velocidadCaida = 600;
-            nivel =2;
-    }
-
-    public void nivel3() {
-           // velocidadCaida = 1100;
-            nivel = 3;
-    }
-
-    public void nivel4() {
-            //velocidadCaida = 1600;
-            nivel = 4;
-            
-    }
-
-    public void nivel5() {
-            //velocidadCaida = 2100;
-            nivel = 5;
-    }
-    
+    }   
     
 }

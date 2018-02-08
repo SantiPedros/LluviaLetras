@@ -17,6 +17,7 @@ public class Controlador implements KeyListener, ActionListener {
     private int vidas = 10;
     private boolean encontrada = false;
     private int velocidadCaida = 100;
+    private int nivel = 1;
 
     public Controlador() {
         v = new Vista(this);
@@ -79,8 +80,9 @@ public class Controlador implements KeyListener, ActionListener {
                     aciertos++;
                     if (aciertos == 10) {//para cada 10 aciertos subir el nivel
                         aciertos = 0;
-                        m.subirNivel();
-                        aumentarVelocidad();
+                        m.cambiarNivel(nivel);
+                        nivel++;
+                       aumentarVelocidad();
                     }
                     encontrada = true;
                 }
@@ -129,27 +131,27 @@ public class Controlador implements KeyListener, ActionListener {
             case "Level 1":
                 velocidadCaida = 100;
                 v.cambiarNivel("NIVEL 1");
-                m.cambiarNivel1();
+                m.cambiarNivel(1);
                 break;
             case "Level 2":
                 velocidadCaida = 600;
                 v.cambiarNivel("NIVEL 2");
-                m.cambiarNivel2();
+                m.cambiarNivel(2);
                 break;
             case "Level 3":
                 velocidadCaida = 1100;
                 v.cambiarNivel("NIVEL 3");
-                m.cambiarNivel3();
+                m.cambiarNivel(3);
                 break;
             case "Level 4":
-                velocidadCaida = 1600;
+                velocidadCaida = 1600; 
                 v.cambiarNivel("NIVEL 4");
-                m.cambiarNivel4();
+                m.cambiarNivel(4);
                 break;
             case "Level 5":
                 velocidadCaida = 2100;
                 v.cambiarNivel("NIVEL 5");
-                m.cambiarNivel5();
+                m.cambiarNivel(5);
                 break;
         }
     }
