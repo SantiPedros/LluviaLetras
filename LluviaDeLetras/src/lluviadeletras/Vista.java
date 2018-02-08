@@ -90,13 +90,11 @@ public class Vista extends JFrame {
         archivo.add(cargar);
         archivo.add(salir);
 
-
         level1.addActionListener(c);
         level2.addActionListener(c);
         level3.addActionListener(c);
         level4.addActionListener(c);
         level5.addActionListener(c);
-
 
         level.add(level1);
         level1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_DOWN_MASK));
@@ -298,7 +296,7 @@ public class Vista extends JFrame {
     public void cambiarNivel(String frase) {
         fraseNivel.setText(frase);
     }
-//    public void sumarAciertos(){
+//        public void sumarAciertos(){
 //        contadorAciertos++;
 //        contadorPuntos.setText(String.valueOf(contadorAciertos));
 //        
