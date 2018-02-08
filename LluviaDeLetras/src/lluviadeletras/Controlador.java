@@ -16,7 +16,7 @@ public class Controlador implements KeyListener, ActionListener {
     private int aciertos = 0;
     private int vidas = 10;
     private boolean encontrada = false;
-    private int velocidadCaida = 100;
+    private int velocidadCaida = 40;
     private int nivel = 1;
 
     public Controlador() {

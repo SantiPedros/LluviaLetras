@@ -136,8 +136,8 @@ public class Vista extends JFrame {
     //caida de letras 
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 10, 30, 30);
-            if (letras.get(i).getY() >= 500 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
+            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY()+4, 30, 30);
+            if (letras.get(i).getY() >= 700 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
             } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
                 ascensoLetras(i);
@@ -149,10 +149,10 @@ public class Vista extends JFrame {
     //ascenso de letras
     public void ascensoLetras(int i) {
         Timer timer;
-        timer = new Timer(100, new ActionListener() {
+        timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 10, 25, 25);
+                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
                 if (letras.get(i).getY() <= 0) {
                     System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
                     gameOver();
@@ -198,7 +198,7 @@ public class Vista extends JFrame {
         for (int i = 0; i < letras.size(); i++) {
             if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()) {
                 System.out.println("SUBEN");
-                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 10, 25, 25);
+                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
                 if (letras.get(i).getY() <= 0) {
                     System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
                     gameOver();
