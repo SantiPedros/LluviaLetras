@@ -73,7 +73,7 @@ public class Vista extends JFrame {
         level4 = new JMenuItem("Level 4");
         level5 = new JMenuItem("Level 5");
         fraseNivel = new JLabel("NIVEL 1");
-        fraseNivel.setBounds(490, 15, 100, 20);
+        fraseNivel.setBounds(510, 15, 100, 20);
         fraseNivel.setForeground(Color.orange);
         fraseNivel.setFont(fraseNivel.getFont().deriveFont(15.0f));
         vidas = new JLabel("VIDAS: ");
