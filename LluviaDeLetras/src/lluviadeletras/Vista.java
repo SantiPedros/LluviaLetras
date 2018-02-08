@@ -201,36 +201,14 @@ public class Vista extends JFrame {
     //método para eliminar las letras de pantalla
     public void eliminarLetra(char letra) {
         for (int i = 0; i < letras.size(); i++) {
-<<<<<<< HEAD
-=======
 
 
-           // if (letras.get(i).getText().equals("" + letra)) {
-                System.out.println(letras.get(i).getText().toString());
-
-                if (letra == letras.get(i).getText().charAt(0)) {
-                    
-                       letras.get(i).setText("");
-                       letras.get(i).setBackground(Color.blue);
-                      this.remove(i);
-//                    letras.remove(letras.get(i));
-//                    remove(lb);
-                }
-                this.repaint();
-           // }
-
->>>>>>> 6b61547f7c67d1b40fb481345f774bbd3e68a58b
             if (letra == letras.get(i).getText().charAt(0)) {
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
                 
                 letras.remove(i);
             }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 6b61547f7c67d1b40fb481345f774bbd3e68a58b
         }
     }
 
