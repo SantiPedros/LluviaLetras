@@ -67,8 +67,8 @@ public class Controlador implements KeyListener, ActionListener {
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             v.moverBloqueIzquierda();
-        } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT) {
-            System.out.println("solo activa mayus");
+        } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode()== KeyEvent.VK_CONTROL) {
+            System.out.println("solo activa mayus o ctrl");
         } else {
             letraEliminar = ke.getKeyChar();
             for (int i = 0; i < v.getLetras().size(); i++) {
