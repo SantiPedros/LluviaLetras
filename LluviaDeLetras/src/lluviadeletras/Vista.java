@@ -146,22 +146,7 @@ public class Vista extends JFrame {
         this.repaint();
     }
 
-    //ascenso de letras
-    public void ascensoLetras(int i) {
-        Timer timer;
-        timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
-                if (letras.get(i).getY() <= 0) {
-                    System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
-                    gameOver();
-                }
-            }
-        });
-        timer.start();
-    }
-
+   
     //creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
@@ -192,11 +177,29 @@ public class Vista extends JFrame {
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 30);
         }
     }
-
+    
+     //ascenso de letras
+    public void ascensoLetras(int i) {
+        Timer timer;
+        
+        timer = new Timer(40, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
+                if (letras.get(i).getY() <= 0) {
+                    System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
+                    gameOver();
+                }
+            }
+        });
+        timer.start();
+       
+    } 
+    
     //método de rebote de letras cuando tocan el bloque inferior
     public void rebotarLetras() {
         for (int i = 0; i < letras.size(); i++) {
-            if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()) {
+            if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()-90) {
                 System.out.println("SUBEN");
                 letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
                 if (letras.get(i).getY() <= 0) {
