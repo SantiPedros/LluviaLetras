@@ -29,7 +29,6 @@ public class Controlador implements KeyListener, ActionListener {
                 letra = m.recogerLetra();
                 v.crearLetras(letra);
             }
-
         });
         timer.start();
 
@@ -38,7 +37,6 @@ public class Controlador implements KeyListener, ActionListener {
             public void actionPerformed(ActionEvent ae) {
                 v.cambiarY();
             }
-
         });
         timer2.start();
     }
