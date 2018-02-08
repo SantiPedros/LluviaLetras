@@ -74,10 +74,10 @@ public class Vista extends JFrame {
         fraseNivel = new JLabel("NIVEL 1");
         fraseNivel.setBounds(400, 100, 100, 100);
         vidas = new JLabel("VIDAS: ");
-        vidas.setBounds(100, 480, 100, 100);
+        vidas.setBounds(100, 490, 100, 100);
         this.add(vidas);
         contadorVidas = new JLabel("10");
-        contadorVidas.setBounds(200, 480, 100, 100);
+        contadorVidas.setBounds(200, 490, 100, 100);
         this.add(contadorVidas);
         this.add(fraseNivel);
         contadorV = 10;
