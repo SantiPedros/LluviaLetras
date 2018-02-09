@@ -252,9 +252,10 @@ public class Vista extends JFrame {
         no.setFont(si.getFont().deriveFont(25.0f));
         si.setBounds(170, 210, 90, 35);
         no.setBounds(330, 210, 90, 35);
-        no.setForeground(Color.white);
-        si.setBackground(Color.green);
-        no.setBackground(Color.red);
+        si.setForeground(Color.cyan);
+        no.setForeground(Color.cyan);
+        si.setBackground(Color.black);
+        no.setBackground(Color.black);
         si.addActionListener(c);
         no.addActionListener(c);
         salida.add(mensaje);
