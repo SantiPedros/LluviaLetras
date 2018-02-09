@@ -140,7 +140,7 @@ public class Vista extends JFrame {
             if (letras.get(i).getY() >= 700 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
             } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
-                ascensoLetras(i);
+              ascensoLetras(i);
             }
         }
         this.repaint();
@@ -178,7 +178,7 @@ public class Vista extends JFrame {
         }
     }
     
-     //ascenso de letras
+//     ascenso de letras
     public void ascensoLetras(int i) {
         Timer timer;
         
@@ -294,8 +294,8 @@ public class Vista extends JFrame {
         return lb;
     }
 
-    public void cambiarNivel(String frase) {
-        fraseNivel.setText(frase);
+    public void cambiarNivel(int n) {
+        fraseNivel.setText("NIVEL "+ n);
     }
 //        public void sumarAciertos(){
 //        contadorAciertos++;

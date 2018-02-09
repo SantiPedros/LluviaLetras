@@ -18,11 +18,12 @@ public class Controlador implements KeyListener, ActionListener {
     private boolean encontrada = false;
     private int velocidadCaida = 40;
     private int nivel = 1;
+    private int velocidadCreacion = 1500;
 
     public Controlador() {
         v = new Vista(this);
         m = new Modelo(this);
-        timer = new Timer(2000, new ActionListener() {
+        timer = new Timer(velocidadCreacion, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -53,10 +54,12 @@ public class Controlador implements KeyListener, ActionListener {
         this.letra = letra;
     }
 
-    public void aumentarVelocidad() {
-        velocidadCaida += 500;
+    public void aumentarVelocidadCaida() {
+        velocidadCaida -= 10;
     }
-
+    public void aumentarVelocidadCreacion(){
+        velocidadCreacion -= 200;
+    }
     @Override
     public void keyTyped(KeyEvent ke) {
     }
@@ -79,8 +82,10 @@ public class Controlador implements KeyListener, ActionListener {
                     if (aciertos == 10) {//para cada 10 aciertos subir el nivel
                         aciertos = 0;
                         m.cambiarNivel(nivel);
+                        v.cambiarNivel(nivel);
                         nivel++;
-                        aumentarVelocidad();
+                        aumentarVelocidadCreacion();
+                        aumentarVelocidadCaida();
                     }
                     encontrada = true;
 
@@ -127,28 +132,33 @@ public class Controlador implements KeyListener, ActionListener {
                 v.getSalida().setVisible(false);
                 break;
             case "Level 1":
-                velocidadCaida = 100;
-                v.cambiarNivel("NIVEL 1");
+                velocidadCaida = 40;
+                velocidadCreacion = 1500;
+                v.cambiarNivel(1);
                 m.cambiarNivel(1);
                 break;
             case "Level 2":
-                velocidadCaida = 600;
-                v.cambiarNivel("NIVEL 2");
+                velocidadCaida = 30;
+                velocidadCreacion = 1300;
+                v.cambiarNivel(2);
                 m.cambiarNivel(2);
                 break;
             case "Level 3":
-                velocidadCaida = 1100;
-                v.cambiarNivel("NIVEL 3");
+                velocidadCaida = 20;
+                velocidadCreacion = 1100;
+                v.cambiarNivel(3);
                 m.cambiarNivel(3);
                 break;
             case "Level 4":
-                velocidadCaida = 1600;
-                v.cambiarNivel("NIVEL 4");
+                velocidadCaida = 10;
+                velocidadCreacion = 900;
+                v.cambiarNivel(4);
                 m.cambiarNivel(4);
                 break;
             case "Level 5":
-                velocidadCaida = 2100;
-                v.cambiarNivel("NIVEL 5");
+                velocidadCaida = 1;
+                velocidadCreacion = 700;
+                v.cambiarNivel(5);
                 m.cambiarNivel(5);
                 break;
         }
