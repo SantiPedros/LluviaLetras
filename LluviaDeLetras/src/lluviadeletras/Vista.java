@@ -137,7 +137,7 @@ public class Vista extends JFrame {
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
             letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY()+4, 30, 30);
-            if (letras.get(i).getY() >= 700 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
+            if (letras.get(i).getY() >= 499 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
             } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
                 ascensoLetras(i);
@@ -150,7 +150,7 @@ public class Vista extends JFrame {
     //creación y adición de barra inferior de la ventana
     public void crearBarra() {
         barra = new JPanel();
-        barra.setBounds(0, 500, 600, 30);
+        barra.setBounds(0, 500, 600, 50);
         barra.setBackground(Color.lightGray);
         this.add(barra);
     }
@@ -158,7 +158,7 @@ public class Vista extends JFrame {
     //creación y adición de bloque
     public void crearBloque() {
         bloque = new JPanel();
-        bloque.setBounds(275, 500, 90, 30);
+        bloque.setBounds(275, 500, 90, 50);
         bloque.setBackground(Color.gray);
         this.add(bloque);
     }
@@ -166,7 +166,7 @@ public class Vista extends JFrame {
     //método para mover bloque
     public void moverBloqueDerecha() {
         if (bloque.getX() <= 550) {
-            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 30);
+            bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 50);
         }
 
     }
@@ -174,7 +174,7 @@ public class Vista extends JFrame {
     //método para mover bloque
     public void moverBloqueIzquierda() {
         if (bloque.getX() >= 0) {
-            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 30);
+            bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 50);
         }
     }
     
@@ -199,7 +199,8 @@ public class Vista extends JFrame {
     //método de rebote de letras cuando tocan el bloque inferior
     public void rebotarLetras() {
         for (int i = 0; i < letras.size(); i++) {
-            if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()-90) {
+            if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()-90){
+                              
                 System.out.println("SUBEN");
                 letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
                 if (letras.get(i).getY() <= 0) {
@@ -220,7 +221,6 @@ public class Vista extends JFrame {
             if (letra == letras.get(i).getText().charAt(0)) {
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
-
                 letras.remove(i);
             }
         }
@@ -232,7 +232,7 @@ public class Vista extends JFrame {
             this.getContentPane().setBackground(Color.orange);
             this.repaint();
 
-        } else {//volver a pintar blanco
+        } else {//volver a pintar azul
             this.getContentPane().setBackground(Color.blue);
             this.repaint();
         }
