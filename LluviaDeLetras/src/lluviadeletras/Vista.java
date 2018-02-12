@@ -296,7 +296,11 @@ public class Vista extends JFrame {
     }
 
     public void cambiarNivel(int n) {
+        if(n>5){
+            fraseNivel.setText("NIVEL "+ 5);
+        }
         fraseNivel.setText("NIVEL "+ n);
+        
     }
 //        public void sumarAciertos(){
 //        contadorAciertos++;
@@ -305,10 +309,10 @@ public class Vista extends JFrame {
 //        
 //    }
 
-    public void restaVidas() {
-        contadorV--;
-        if (contadorV > 0) {
-            contadorVidas.setText(String.valueOf(contadorV));
+    public void restaVidas(int vidas) {
+       // contadorV--;
+        if (vidas > 0) {
+            contadorVidas.setText(String.valueOf(vidas));
         } else {
             contadorVidas.setText(String.valueOf("0"));
         }

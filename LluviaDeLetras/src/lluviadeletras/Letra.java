@@ -60,7 +60,9 @@ public class Letra {
         public void cambiarNivel(int x) {
             //velocidadCaida = 100;
             nivel = x;
-            
+            if(nivel>=5){
+            nivel=5;
+        }
     }   
     
 }

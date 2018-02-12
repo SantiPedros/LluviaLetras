@@ -15,10 +15,10 @@ public class Controlador implements KeyListener, ActionListener {
     private char letraEliminar;
     private int aciertos = 0;
     private int vidas = 10;
-    private boolean encontrada = false;
     private int velocidadCaida = 40;
     private int nivel = 1;
     private int velocidadCreacion = 1500;
+    private boolean encontrada = false;
 
     public Controlador() {
         v = new Vista(this);
@@ -57,48 +57,56 @@ public class Controlador implements KeyListener, ActionListener {
     public void aumentarVelocidadCaida() {
         velocidadCaida -= 10;
     }
-    public void aumentarVelocidadCreacion(){
+
+    public void aumentarVelocidadCreacion() {
         velocidadCreacion -= 200;
     }
+
     @Override
     public void keyTyped(KeyEvent ke) {
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
+
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             v.moverBloqueIzquierda();
-        } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode()== KeyEvent.VK_CONTROL) {
+        } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CONTROL) {
             System.out.println("solo activa mayus o ctrl");
         } else {
             letraEliminar = ke.getKeyChar();
             for (int i = 0; i < v.getLetras().size(); i++) {
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
+                    System.out.println(letraEliminar+" es igual que "+v.getLetras().get(i).getText().charAt(0));
                     m.mandarLetra(letraEliminar);
                     v.eliminarLetra(letraEliminar);
                     aciertos++;
                     if (aciertos == 10) {//para cada 10 aciertos subir el nivel
                         aciertos = 0;
+
+                        nivel++;
+                        if (nivel > 5) {
+                            nivel = 5;
+                        }
                         m.cambiarNivel(nivel);
                         v.cambiarNivel(nivel);
-                        nivel++;
                         aumentarVelocidadCreacion();
                         aumentarVelocidadCaida();
-                    }
-                    encontrada = true;
 
-                } else {
+                    }
+                   
+                } else  {
                     v.pintarFondo(1);
                     aciertos--;
                     vidas--;
+
+                    v.restaVidas(vidas);
                     if (vidas <= 0) {
 
                         v.gameOver();
                     }
-                    v.restaVidas();
-                    encontrada = false;
                 }
             }
         }
@@ -134,30 +142,40 @@ public class Controlador implements KeyListener, ActionListener {
             case "Level 1":
                 velocidadCaida = 40;
                 velocidadCreacion = 1500;
+                aciertos = 0;
+                nivel=1;
                 v.cambiarNivel(1);
                 m.cambiarNivel(1);
                 break;
             case "Level 2":
                 velocidadCaida = 30;
                 velocidadCreacion = 1300;
+                nivel = 2;
+                aciertos = 0;
                 v.cambiarNivel(2);
                 m.cambiarNivel(2);
                 break;
             case "Level 3":
                 velocidadCaida = 20;
                 velocidadCreacion = 1100;
+                aciertos = 0;
+                nivel=3;
                 v.cambiarNivel(3);
                 m.cambiarNivel(3);
                 break;
             case "Level 4":
                 velocidadCaida = 10;
                 velocidadCreacion = 900;
+                aciertos = 0;
+                nivel = 4;
                 v.cambiarNivel(4);
                 m.cambiarNivel(4);
                 break;
             case "Level 5":
                 velocidadCaida = 1;
                 velocidadCreacion = 700;
+                nivel = 5;
+                aciertos = 0;
                 v.cambiarNivel(5);
                 m.cambiarNivel(5);
                 break;
