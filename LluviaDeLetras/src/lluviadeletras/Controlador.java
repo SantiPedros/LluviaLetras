@@ -30,7 +30,8 @@ public class Controlador implements KeyListener, ActionListener {
     }
 
     /**
-     * Creamos los dos timers, uno para controlar la velocidad de aparecer letras, el otro controla la velocidad de caida
+     * Creamos los dos timers, uno para controlar la velocidad de aparecer
+     * letras, el otro controla la velocidad de caida
      */
     public void crearTimers() {
         //Creacion de letras
@@ -89,13 +90,15 @@ public class Controlador implements KeyListener, ActionListener {
                     if (aciertos == 10) {//para cada 10 aciertos subir el nivel
                         aciertos = 0;
                         nivel++;
+
                         if (nivel > 5) {
                             nivel = 5;
+                        } else {
+                            m.cambiarNivel(nivel);
+                            v.cambiarNivel(nivel);
+                            aumentarVelocidadCaida();
                         }
-                        m.cambiarNivel(nivel);
-                        v.cambiarNivel(nivel);
-                        aumentarVelocidadCreacion();
-                        aumentarVelocidadCaida();
+
                     }
                     encontrada = true;
                 }
@@ -217,11 +220,10 @@ public class Controlador implements KeyListener, ActionListener {
     }
 
     public void aumentarVelocidadCaida() {
+        pararTimers();
         velocidadCaida -= 10;
-    }
-
-    public void aumentarVelocidadCreacion() {
         velocidadCreacion -= 200;
+        crearTimers();
     }
 
 }
