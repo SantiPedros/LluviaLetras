@@ -68,7 +68,6 @@ public class Controlador implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -101,6 +100,7 @@ public class Controlador implements KeyListener, ActionListener {
                        
                     }
                     encontrada = true;
+<<<<<<< HEAD
                 } else {
 
                 }
@@ -116,9 +116,22 @@ public class Controlador implements KeyListener, ActionListener {
                         v.gameOver();
                     }
                    
+=======
+                }
+            }
+
+            if (!encontrada) {
+                v.pintarFondo(1);
+                aciertos--;
+                vidas--;
+                v.restaVidas(vidas);
+                if (vidas <= 0) {
+                    v.gameOver();
+>>>>>>> 10369604344966c2bb4d8433a008c950bd7b2759
                 }
                 encontrada= false;
             }
+            encontrada = false;
         }
     }
 
