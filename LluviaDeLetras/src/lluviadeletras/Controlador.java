@@ -68,7 +68,6 @@ public class Controlador implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             v.moverBloqueDerecha();
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -96,19 +95,20 @@ public class Controlador implements KeyListener, ActionListener {
                         aumentarVelocidadCreacion();
                         aumentarVelocidadCaida();
                     }
-                } else {
-                    System.out.println("fallo");
-                    v.pintarFondo(1);
-                    aciertos--;
-                    vidas--;
-
-                    v.restaVidas(vidas);
-                    if (vidas <= 0) {
-
-                        v.gameOver();
-                    }
+                    encontrada = true;
                 }
             }
+
+            if (!encontrada) {
+                v.pintarFondo(1);
+                aciertos--;
+                vidas--;
+                v.restaVidas(vidas);
+                if (vidas <= 0) {
+                    v.gameOver();
+                }
+            }
+            encontrada = false;
         }
     }
 
