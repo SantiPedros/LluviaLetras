@@ -20,11 +20,16 @@ public class Controlador implements KeyListener, ActionListener {
     private int velocidadCreacion = 1500;
     private boolean encontrada = false;//variable de control para saber si la letra está en pantalla o no.
     
-    //CONTROLADOR
+    /**
+     * Constructor Controlador
+     */
     public Controlador() {
         v = new Vista(this);
         m = new Modelo(this);
-        //activación de Timer que crea letra en posiciones x aleatorias
+        
+        /**
+         * //activación de Timer que crea letra en posiciones x aleatorias
+         */
         timer = new Timer(velocidadCreacion, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -34,7 +39,11 @@ public class Controlador implements KeyListener, ActionListener {
             }
         });
         timer.start();
-//activación del Timer que se encarga de mover las letras creadas hacia abajo. 
+
+/**
+ * //activación del Timer que se encarga de mover las letras creadas hacia abajo. 
+ */
+
         timer2 = new Timer(velocidadCaida, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -49,22 +58,28 @@ public class Controlador implements KeyListener, ActionListener {
     @Override
     public void keyTyped(KeyEvent ke) {
     }
-//METODOS DE CONTROL DE TECLAS
+    /**
+     * 
+     * METODOS DE CONTROL DE TECLAS
+     */
     @Override
     public void keyPressed(KeyEvent ke) {
-        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {//derecha -->
             v.moverBloqueDerecha();
-        } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {//izquierda <--
             v.moverBloqueIzquierda();
         } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CONTROL) {
-            System.out.println("solo activa mayus o ctrl");//Para cuando se pulsa las mayusculas o el control
+           //Esto es para las teclase especiales, Mayusculas, y CTLR para los atajos 
         } else if (ke.getKeyCode() == KeyEvent.VK_1 || ke.getKeyCode() == KeyEvent.VK_2 || ke.getKeyCode() == KeyEvent.VK_3 || ke.getKeyCode() == KeyEvent.VK_4 || ke.getKeyCode() == KeyEvent.VK_5) {
-            System.out.println("numero");//Para cuando se pulsa un numero del 1 al 5 para los atajos de teclado
+            //Aquí nos encargamos del numero de CTRL que es pulsado.
         } else {
-            letraEliminar = ke.getKeyChar();
-          //  for (int i = 0; i < v.getLetras().size(); i++) {
-            for (int i = 0;i<v.getLetras().size();i++) {
-                
+            
+            /**
+             * Control de eliminación de letras. Aquí se controla que letras hay en pantalla
+             */
+            
+            letraEliminar = ke.getKeyChar();          
+            for (int i = 0;i<v.getLetras().size();i++) {           
             
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
                     System.out.println(letraEliminar + " es igual que " + v.getLetras().get(i).getText().charAt(0));
@@ -103,19 +118,26 @@ public class Controlador implements KeyListener, ActionListener {
     public void keyReleased(KeyEvent ke) {
         v.pintarFondo(0);
     }
-
+/**
+ * Metodo de parada de timers, lo usaremos cuando acabe el juego
+ */
     public void pararTimers() {
         timer.stop();
         timer2.stop();
     }
 
+    
+    /**
+     * 
+     * Switch/Case asociado a la barra de menu y sus opciones  
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         switch (ae.getActionCommand()) {
             case "Salir":
-                System.out.println("PanelSalida");
+                
                 v.CrearPanelSalida();
-                //v.getSalida().setFocusable(true);
+                
                 break;
 
             case "SI":
@@ -123,7 +145,7 @@ public class Controlador implements KeyListener, ActionListener {
                 break;
 
             case "NO":
-                //v.getSalida().setFocusable(false);
+                
                 v.getSalida().setVisible(false);
                 break;
             case "Level 1":
