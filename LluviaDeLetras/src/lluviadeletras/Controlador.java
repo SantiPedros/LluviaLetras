@@ -18,11 +18,13 @@ public class Controlador implements KeyListener, ActionListener {
     private int velocidadCaida = 40;
     private int nivel = 1;
     private int velocidadCreacion = 1500;
-    private boolean encontrada = false;
-
+    private boolean encontrada = false;//variable de control para saber si la letra está en pantalla o no.
+    
+    //CONTROLADOR
     public Controlador() {
         v = new Vista(this);
         m = new Modelo(this);
+        //activación de Timer que crea letra en posiciones x aleatorias
         timer = new Timer(velocidadCreacion, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -32,7 +34,7 @@ public class Controlador implements KeyListener, ActionListener {
             }
         });
         timer.start();
-
+//activación del Timer que se encarga de mover las letras creadas hacia abajo. 
         timer2 = new Timer(velocidadCaida, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -42,25 +44,7 @@ public class Controlador implements KeyListener, ActionListener {
         timer2.start();
     }
 
-    public int getVelocidadCaida() {
-        return velocidadCaida;
-    }
-
-    public String getLetra() {
-        return letra;
-    }
-
-    public void setLetra(String letra) {
-        this.letra = letra;
-    }
-
-    public void aumentarVelocidadCaida() {
-        velocidadCaida -= 10;
-    }
-
-    public void aumentarVelocidadCreacion() {
-        velocidadCreacion -= 200;
-    }
+   
 
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -184,4 +168,24 @@ public class Controlador implements KeyListener, ActionListener {
                 break;
         }
     }
+     public int getVelocidadCaida() {
+        return velocidadCaida;
+    }
+
+    public String getLetra() {
+        return letra;
+    }
+
+    public void setLetra(String letra) {
+        this.letra = letra;
+    }
+
+    public void aumentarVelocidadCaida() {
+        velocidadCaida -= 10;
+    }
+
+    public void aumentarVelocidadCreacion() {
+        velocidadCreacion -= 200;
+    }
+    
 }
