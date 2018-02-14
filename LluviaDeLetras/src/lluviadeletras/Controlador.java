@@ -15,21 +15,25 @@ public class Controlador implements KeyListener, ActionListener {
     private char letraEliminar;
     private int aciertos = 0;
     private int vidas = 10;
-    private int velocidadCaida = 40;
+    private int velocidadCaida = 50;
     private int nivel = 1;
     private int velocidadCreacion = 1500;
     private boolean encontrada = false;//variable de control para saber si la letra está en pantalla o no.
-    
+
     /**
      * Constructor Controlador
      */
     public Controlador() {
         v = new Vista(this);
         m = new Modelo(this);
-        
-        /**
-         * //activación de Timer que crea letra en posiciones x aleatorias
-         */
+        crearTimers();
+    }
+
+    /**
+     * Creamos los dos timers, uno para controlar la velocidad de aparecer letras, el otro controla la velocidad de caida
+     */
+    public void crearTimers() {
+        //Creacion de letras
         timer = new Timer(velocidadCreacion, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -40,10 +44,7 @@ public class Controlador implements KeyListener, ActionListener {
         });
         timer.start();
 
-/**
- * //activación del Timer que se encarga de mover las letras creadas hacia abajo. 
- */
-
+        //Velocidad de caida
         timer2 = new Timer(velocidadCaida, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -51,15 +52,15 @@ public class Controlador implements KeyListener, ActionListener {
             }
         });
         timer2.start();
-    }
 
-   
+    }
 
     @Override
     public void keyTyped(KeyEvent ke) {
     }
+
     /**
-     * 
+     *
      * METODOS DE CONTROL DE TECLAS
      */
     @Override
@@ -69,20 +70,19 @@ public class Controlador implements KeyListener, ActionListener {
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {//izquierda <--
             v.moverBloqueIzquierda();
         } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CONTROL) {
-           //Esto es para las teclase especiales, Mayusculas, y CTLR para los atajos 
+            //Esto es para las teclase especiales, Mayusculas, y CTLR para los atajos 
         } else if (ke.getKeyCode() == KeyEvent.VK_1 || ke.getKeyCode() == KeyEvent.VK_2 || ke.getKeyCode() == KeyEvent.VK_3 || ke.getKeyCode() == KeyEvent.VK_4 || ke.getKeyCode() == KeyEvent.VK_5) {
             //Aquí nos encargamos del numero de CTRL que es pulsado.
         } else {
-            
+
             /**
-             * Control de eliminación de letras. Aquí se controla que letras hay en pantalla
+             * Control de eliminación de letras. Aquí se controla que letras hay
+             * en pantalla
              */
-            
-            letraEliminar = ke.getKeyChar();          
-            for (int i = 0;i<v.getLetras().size();i++) {           
-            
+            letraEliminar = ke.getKeyChar();
+            for (int i = 0; i < v.getLetras().size(); i++) {
+
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
-                    System.out.println(letraEliminar + " es igual que " + v.getLetras().get(i).getText().charAt(0));
                     m.mandarLetra(letraEliminar);
                     v.eliminarLetra(letraEliminar);
                     aciertos++;
@@ -118,26 +118,26 @@ public class Controlador implements KeyListener, ActionListener {
     public void keyReleased(KeyEvent ke) {
         v.pintarFondo(0);
     }
-/**
- * Metodo de parada de timers, lo usaremos cuando acabe el juego
- */
+
+    /**
+     * Metodo de parada de timers, lo usaremos cuando acabe el juego
+     */
     public void pararTimers() {
         timer.stop();
         timer2.stop();
     }
 
-    
     /**
-     * 
-     * Switch/Case asociado a la barra de menu y sus opciones  
+     *
+     * Switch/Case asociado a la barra de menu y sus opciones
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
         switch (ae.getActionCommand()) {
             case "Salir":
-                
+
                 v.CrearPanelSalida();
-                
+
                 break;
 
             case "SI":
@@ -145,52 +145,66 @@ public class Controlador implements KeyListener, ActionListener {
                 break;
 
             case "NO":
-                
                 v.getSalida().setVisible(false);
                 break;
             case "Level 1":
+                pararTimers();
                 velocidadCaida = 40;
                 velocidadCreacion = 1500;
                 aciertos = 0;
                 nivel = 1;
-                v.cambiarNivel(1);
-                m.cambiarNivel(1);
+                v.cambiarNivel(nivel);
+                m.cambiarNivel(nivel);
+                crearTimers();
                 break;
             case "Level 2":
+                pararTimers();
                 velocidadCaida = 30;
                 velocidadCreacion = 1300;
                 nivel = 2;
                 aciertos = 0;
-                v.cambiarNivel(2);
-                m.cambiarNivel(2);
+                v.cambiarNivel(nivel);
+                m.cambiarNivel(nivel);
+                crearTimers();
+
                 break;
             case "Level 3":
+                pararTimers();
                 velocidadCaida = 20;
                 velocidadCreacion = 1100;
                 aciertos = 0;
                 nivel = 3;
-                v.cambiarNivel(3);
-                m.cambiarNivel(3);
+                v.cambiarNivel(nivel);
+                m.cambiarNivel(nivel);
+                crearTimers();
+
                 break;
             case "Level 4":
+                pararTimers();
                 velocidadCaida = 10;
                 velocidadCreacion = 900;
                 aciertos = 0;
                 nivel = 4;
-                v.cambiarNivel(4);
-                m.cambiarNivel(4);
+                v.cambiarNivel(nivel);
+                m.cambiarNivel(nivel);
+                crearTimers();
+
                 break;
             case "Level 5":
+                pararTimers();
                 velocidadCaida = 1;
                 velocidadCreacion = 700;
                 nivel = 5;
                 aciertos = 0;
-                v.cambiarNivel(5);
-                m.cambiarNivel(5);
+                v.cambiarNivel(nivel);
+                m.cambiarNivel(nivel);
+                crearTimers();
+
                 break;
         }
     }
-     public int getVelocidadCaida() {
+
+    public int getVelocidadCaida() {
         return velocidadCaida;
     }
 
@@ -209,5 +223,5 @@ public class Controlador implements KeyListener, ActionListener {
     public void aumentarVelocidadCreacion() {
         velocidadCreacion -= 200;
     }
-    
+
 }
