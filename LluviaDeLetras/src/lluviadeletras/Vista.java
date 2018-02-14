@@ -217,8 +217,8 @@ public class Vista extends JFrame {
     //método para eliminar las letras de pantalla
     public void eliminarLetra(char letra) {
         for (int i = 0; i < letras.size(); i++) {
-
             if (letra == letras.get(i).getText().charAt(0)) {
+                System.out.println("eliminar "+letras.get(i).getText());
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
                 letras.remove(i);

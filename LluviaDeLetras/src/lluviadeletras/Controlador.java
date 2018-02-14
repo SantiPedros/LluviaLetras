@@ -74,18 +74,19 @@ public class Controlador implements KeyListener, ActionListener {
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             v.moverBloqueIzquierda();
         } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CONTROL) {
-            System.out.println("solo activa mayus o ctrl");
+            System.out.println("solo activa mayus o ctrl");//Para cuando se pulsa las mayusculas o el control
+        } else if (ke.getKeyCode() == KeyEvent.VK_1 || ke.getKeyCode() == KeyEvent.VK_2 || ke.getKeyCode() == KeyEvent.VK_3 || ke.getKeyCode() == KeyEvent.VK_4 || ke.getKeyCode() == KeyEvent.VK_5) {
+            System.out.println("numero");//Para cuando se pulsa un numero del 1 al 5 para los atajos de teclado
         } else {
             letraEliminar = ke.getKeyChar();
             for (int i = 0; i < v.getLetras().size(); i++) {
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
-                    System.out.println(letraEliminar+" es igual que "+v.getLetras().get(i).getText().charAt(0));
+                    System.out.println(letraEliminar + " es igual que " + v.getLetras().get(i).getText().charAt(0));
                     m.mandarLetra(letraEliminar);
                     v.eliminarLetra(letraEliminar);
                     aciertos++;
                     if (aciertos == 10) {//para cada 10 aciertos subir el nivel
                         aciertos = 0;
-
                         nivel++;
                         if (nivel > 5) {
                             nivel = 5;
@@ -94,10 +95,9 @@ public class Controlador implements KeyListener, ActionListener {
                         v.cambiarNivel(nivel);
                         aumentarVelocidadCreacion();
                         aumentarVelocidadCaida();
-
                     }
-                   
-                } else  {
+                } else {
+                    System.out.println("fallo");
                     v.pintarFondo(1);
                     aciertos--;
                     vidas--;
@@ -143,7 +143,7 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCaida = 40;
                 velocidadCreacion = 1500;
                 aciertos = 0;
-                nivel=1;
+                nivel = 1;
                 v.cambiarNivel(1);
                 m.cambiarNivel(1);
                 break;
@@ -159,7 +159,7 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCaida = 20;
                 velocidadCreacion = 1100;
                 aciertos = 0;
-                nivel=3;
+                nivel = 3;
                 v.cambiarNivel(3);
                 m.cambiarNivel(3);
                 break;
