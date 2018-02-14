@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lluviadeletras;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- *
- * @author rodry
- */
 public class Letra {
 
     private Random r = new Random();
@@ -24,7 +16,11 @@ public class Letra {
         letras = new ArrayList();
     }
     
-
+    
+    /**
+     * 
+     * @return ESTE METODO TE RETORNA UNA LETRA ALEATORIA QUE SERA UN STRING.
+     */
     public String letraRandom() {
         String letra;
         Boolean rep;
@@ -41,7 +37,10 @@ public class Letra {
         letras.add(letra);
         return letra;
     }
-
+    /**
+     * 
+     * @param letra CON ESTE METODO ELIMINA LA LETRA QUE LE PASAMOS DEL ARRAY
+     */
     public void quitarLetraArray(char letra) {
         for (int i = 0;i<letras.size();i++) {
             if (letra == letras.get(i).charAt(0)) {
@@ -50,13 +49,19 @@ public class Letra {
         }
     }
 
-    //aumentar nivel hasta 5, que se queda estable
+   /**
+    * aumentar nivel hasta 5 PROGRESIVAMENTE
+    */
     public void setNivel() {
         nivel++;
         if(nivel>=5){
             nivel=5;
         }
     }
+    /**
+     * 
+     * @param x CAMBIA EL NIVEL PONIENDO EL QUE SE PASE MEDIANTE LA X.
+     */
         public void cambiarNivel(int x) {
             //velocidadCaida = 100;
             nivel = x;
