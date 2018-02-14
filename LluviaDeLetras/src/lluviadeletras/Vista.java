@@ -44,7 +44,6 @@ public class Vista extends JFrame {
         letras = new ArrayList();
         crearBloque();
         crearBarra();
-
 //    letras = new ArrayList();
 //    JLabel a = new JLabel("a");
 //    a.setBounds(60,60,200,200);
@@ -82,7 +81,7 @@ public class Vista extends JFrame {
         vidas.setBounds(15, 15,55,20);
         this.add(vidas);
         contadorVidas = new JLabel("10");
-        contadorVidas.setBounds(70, 15, 100,20);
+        contadorVidas.setBounds(70, 15, 60,20);
         contadorVidas.setFont(contadorVidas.getFont().deriveFont(15.0f));
         contadorVidas.setForeground(Color.white);
         
@@ -168,7 +167,6 @@ public class Vista extends JFrame {
         if (bloque.getX() <= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 50);
         }
-
     }
 
     //método para mover bloque
@@ -216,7 +214,11 @@ public class Vista extends JFrame {
 
     //método para eliminar las letras de pantalla
     public void eliminarLetra(char letra) {
+<<<<<<< HEAD
+       for (int i = 0; i < letras.size(); i++) {
+=======
         for (int i = 0; i < letras.size(); i++) {
+>>>>>>> 53c7a1fdc3d8e11812354305e09a6e03aae1278a
             if (letra == letras.get(i).getText().charAt(0)) {
                 System.out.println("eliminar "+letras.get(i).getText());
                 letras.get(i).setVisible(false);
@@ -228,7 +230,7 @@ public class Vista extends JFrame {
 
     //Método para cambiar el color de fondo según se pulse o no la tecla correcta.
     public void pintarFondo(int x) {
-        if (x == 1) {//fallo
+        if (x == 1) {//Cuando se falla al pular una letra
             this.getContentPane().setBackground(Color.orange);
             this.repaint();
 
@@ -264,7 +266,7 @@ public class Vista extends JFrame {
         salida.setLayout(null);
         salida.setBounds(0, 0, 600, 600);
         salida.setBackground(Color.darkGray);
-        //salida.setFocusable(false);
+        
         salida.setVisible(true);
         this.add(salida);
     }
