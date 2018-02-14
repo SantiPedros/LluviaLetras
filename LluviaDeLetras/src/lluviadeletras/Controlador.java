@@ -77,7 +77,10 @@ public class Controlador implements KeyListener, ActionListener {
             System.out.println("solo activa mayus o ctrl");
         } else {
             letraEliminar = ke.getKeyChar();
-            for (int i = 0; i < v.getLetras().size(); i++) {
+          //  for (int i = 0; i < v.getLetras().size(); i++) {
+            for (int i = 0;i<v.getLetras().size();i++) {
+                
+            
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
                     System.out.println(letraEliminar+" es igual que "+v.getLetras().get(i).getText().charAt(0));
                     m.mandarLetra(letraEliminar);
