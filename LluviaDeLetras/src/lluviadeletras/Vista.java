@@ -8,14 +8,9 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.JPanel;
 
-/**
- *
- * @author rodry
- */
+
 public class Vista extends JFrame {
-
     private Controlador c;
     private ArrayList<Label> letras;
     private Label lb;
@@ -26,13 +21,13 @@ public class Vista extends JFrame {
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
-    private Timer pintar;
-
     private int contadorV = 0;
-
-    private int y = 0;
     private int x = 0;
 
+    /**
+     * Constructor de la vista
+     * @param c 
+     */
     public Vista(Controlador c) {
         this.setTitle("LLuvia de Letras");
         this.c = c;
@@ -44,11 +39,6 @@ public class Vista extends JFrame {
         letras = new ArrayList();
         crearBloque();
         crearBarra();
-//    letras = new ArrayList();
-//    JLabel a = new JLabel("a");
-//    a.setBounds(60,60,200,200);
-//    letras.add(a);
-//    this.add(a);
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(380, 80, 600, 600);
@@ -57,7 +47,9 @@ public class Vista extends JFrame {
         this.setVisible(true);
     }
 
-    //inicializar elementos de la Barra de Menu superior.
+    /**
+     * inicializar elementos de la Barra de Menu superior.
+     */
     public void crearMenu() {
         barraMenu = new JMenuBar();
         archivo = new JMenu("Archivo");
@@ -78,19 +70,21 @@ public class Vista extends JFrame {
         vidas = new JLabel("VIDAS: ");
         vidas.setFont(vidas.getFont().deriveFont(15.0f));
         vidas.setForeground(Color.white);
-        vidas.setBounds(15, 15,55,20);
+        vidas.setBounds(15, 15, 55, 20);
         this.add(vidas);
         contadorVidas = new JLabel("10");
-        contadorVidas.setBounds(70, 15, 60,20);
+        contadorVidas.setBounds(70, 15, 60, 20);
         contadorVidas.setFont(contadorVidas.getFont().deriveFont(15.0f));
         contadorVidas.setForeground(Color.white);
-        
+
         this.add(contadorVidas);
         this.add(fraseNivel);
         contadorV = 10;
     }
 
-    // Añadimos los componentes de menu a la Barra de menu y a la vista.
+    /**
+     * Añadimos los componentes de menu a la Barra de menu y a la vista.
+     */
     public void menuAddition() {
         archivo.add(guardar);
         archivo.add(cargar);
@@ -118,9 +112,12 @@ public class Vista extends JFrame {
         this.setJMenuBar(barraMenu);
     }
 
-    //método de creación de letras
+    /**
+     * método de creación de letras
+     *
+     * @param letra
+     */
     public void crearLetras(String letra) {
-        System.out.println(letra);
         x = (int) (Math.random() * 575);
         lb = new Label();
         lb.setText(letra);
@@ -132,21 +129,24 @@ public class Vista extends JFrame {
         letras.add(lb);
     }
 
-    //caida de letras 
+    /**
+     * caida de letras
+     */
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY()+4, 30, 30);
+            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
             if (letras.get(i).getY() >= 499 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
             } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
-              ascensoLetras(i);
+                ascensoLetras(i);
             }
         }
         this.repaint();
     }
 
-   
-    //creación y adición de barra inferior de la ventana
+    /**
+     * creación y adición de barra inferior de la ventana
+     */
     public void crearBarra() {
         barra = new JPanel();
         barra.setBounds(0, 500, 600, 50);
@@ -154,7 +154,9 @@ public class Vista extends JFrame {
         this.add(barra);
     }
 
-    //creación y adición de bloque
+    /**
+     * creación y adición de bloque
+     */
     public void crearBloque() {
         bloque = new JPanel();
         bloque.setBounds(275, 500, 90, 50);
@@ -162,64 +164,52 @@ public class Vista extends JFrame {
         this.add(bloque);
     }
 
-    //método para mover bloque
+    /**
+     * método para mover bloque a la derecha
+     */
     public void moverBloqueDerecha() {
         if (bloque.getX() <= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 50);
         }
     }
 
-    //método para mover bloque
+    /**
+     * método para mover bloque a la izquierda
+     */
     public void moverBloqueIzquierda() {
         if (bloque.getX() >= 0) {
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 50);
         }
     }
-    
-//     ascenso de letras
+
+    /**
+     * ascenso de letras, se le pasa un entero
+     *
+     * @param i
+     */
     public void ascensoLetras(int i) {
         Timer timer;
-        
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
                 if (letras.get(i).getY() <= 0) {
-                    System.out.println("asñdlkfjasdkñfñasdsñldkfjasdf");
                     gameOver();
                 }
             }
         });
         timer.start();
-       
-    } 
-    
-    //método de rebote de letras cuando tocan el bloque inferior
-    public void rebotarLetras() {
-        for (int i = 0; i < letras.size(); i++) {
-            if (letras.get(i).getX() == bloque.getX() && letras.get(i).getY() == bloque.getY()-90){
-                              
-                System.out.println("SUBEN");
-                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
-                if (letras.get(i).getY() <= 0) {
-                    
-                    gameOver();
-                } else {
-                   
-                    
-                }
-            }
 
-        }
     }
 
-    //método para eliminar las letras de pantalla
+    /**
+     * método para eliminar las letras de pantalla
+     *
+     * @param letra
+     */
     public void eliminarLetra(char letra) {
-
-       for (int i = 0; i < letras.size(); i++) {
-
+        for (int i = 0; i < letras.size(); i++) {
             if (letra == letras.get(i).getText().charAt(0)) {
-                System.out.println("eliminar "+letras.get(i).getText());
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
                 letras.remove(i);
@@ -227,19 +217,25 @@ public class Vista extends JFrame {
         }
     }
 
-    //Método para cambiar el color de fondo según se pulse o no la tecla correcta.
+    /**
+     * Método para cambiar el color de fondo según se pulse o no la tecla
+     * correcta. Se le pasa o 0 o 1.
+     *
+     * @param x
+     */
     public void pintarFondo(int x) {
         if (x == 1) {//Cuando se falla al pular una letra
             this.getContentPane().setBackground(Color.orange);
             this.repaint();
-
         } else {//volver a pintar azul
             this.getContentPane().setBackground(Color.blue);
             this.repaint();
         }
     }
 
-    //PANEL DE SALIDA. Se generará al pulsar "Salir" en el menú
+    /**
+     * PANEL DE SALIDA. Se generará al pulsar "Salir" en el menú.
+     */
     public void CrearPanelSalida() {
         this.repaint();
         salida = new JPanel();
@@ -265,14 +261,15 @@ public class Vista extends JFrame {
         salida.setLayout(null);
         salida.setBounds(0, 0, 600, 600);
         salida.setBackground(Color.darkGray);
-        
+
         salida.setVisible(true);
         this.add(salida);
     }
 
-//FIN DEL JUEGO
+    /**
+     * FIN DEL JUEGO. Se genera la pantalla de fin de juego
+     */
     public void gameOver() {
-        //this.getContentPane().removeAll();
         this.getContentPane().setEnabled(false);
         c.pararTimers();
         JLabel b = new JLabel("GAME OVER!");
@@ -282,6 +279,33 @@ public class Vista extends JFrame {
         add(b);
         this.getContentPane().setBackground(Color.black);
         this.repaint();
+    }
+
+    /**
+     * Metodo para comprobar el nivel y actualizarlo en la vista
+     *
+     * @param n
+     */
+    public void cambiarNivel(int n) {
+        if (n > 5) {
+            fraseNivel.setText("NIVEL " + 5);
+        }
+        fraseNivel.setText("NIVEL " + n);
+
+    }
+
+    /**
+     * Metodo para comprobar las vidas y actualizarlas en la vista
+     *
+     * @param vidas
+     */
+    public void restaVidas(int vidas) {
+        if (vidas > 0) {
+            contadorVidas.setText(String.valueOf(vidas));
+        } else {
+            contadorVidas.setText(String.valueOf("0"));
+        }
+
     }
 
     public JPanel getSalida() {
@@ -294,30 +318,6 @@ public class Vista extends JFrame {
 
     public Label getLb() {
         return lb;
-    }
-
-    public void cambiarNivel(int n) {
-        if(n>5){
-            fraseNivel.setText("NIVEL "+ 5);
-        }
-        fraseNivel.setText("NIVEL "+ n);
-        
-    }
-//        public void sumarAciertos(){
-//        contadorAciertos++;
-//        contadorPuntos.setText(String.valueOf(contadorAciertos));
-//        
-//        
-//    }
-
-    public void restaVidas(int vidas) {
-       // contadorV--;
-        if (vidas > 0) {
-            contadorVidas.setText(String.valueOf(vidas));
-        } else {
-            contadorVidas.setText(String.valueOf("0"));
-        }
-
     }
 
 }
