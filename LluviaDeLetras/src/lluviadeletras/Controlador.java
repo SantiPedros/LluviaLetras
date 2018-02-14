@@ -79,10 +79,10 @@ public class Controlador implements KeyListener, ActionListener {
             System.out.println("numero");//Para cuando se pulsa un numero del 1 al 5 para los atajos de teclado
         } else {
             letraEliminar = ke.getKeyChar();
-          //  for (int i = 0; i < v.getLetras().size(); i++) {
-            for (int i = 0;i<v.getLetras().size();i++) {
-                
-            
+            //  for (int i = 0; i < v.getLetras().size(); i++) {
+            for (int i = 0; i < v.getLetras().size(); i++) {
+                //encontrada = false;
+
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
                     System.out.println(letraEliminar + " es igual que " + v.getLetras().get(i).getText().charAt(0));
                     m.mandarLetra(letraEliminar);
@@ -98,8 +98,13 @@ public class Controlador implements KeyListener, ActionListener {
                         v.cambiarNivel(nivel);
                         aumentarVelocidadCreacion();
                         aumentarVelocidadCaida();
+                       
                     }
+                    encontrada = true;
                 } else {
+
+                }
+                if (!encontrada) {
                     System.out.println("fallo");
                     v.pintarFondo(1);
                     aciertos--;
@@ -110,7 +115,9 @@ public class Controlador implements KeyListener, ActionListener {
 
                         v.gameOver();
                     }
+                   
                 }
+                encontrada= false;
             }
         }
     }
