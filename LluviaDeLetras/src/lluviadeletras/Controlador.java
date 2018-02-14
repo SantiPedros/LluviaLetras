@@ -49,7 +49,7 @@ public class Controlador implements KeyListener, ActionListener {
     @Override
     public void keyTyped(KeyEvent ke) {
     }
-
+//METODOS DE CONTROL DE TECLAS
     @Override
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
