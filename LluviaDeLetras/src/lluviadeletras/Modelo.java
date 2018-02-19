@@ -15,7 +15,8 @@ public class Modelo{
      * @return ESTE METODO COGE LA LETRA ALEATORIA DE LA CLASE LETRA Y SE LA VA A MANDAR AL CONTROLADOR 
      */
     public String recogerLetra(){
-        letra = l.letraRandom();
+        //letra = l.letraRandom();
+        letra=l.creacionCaracteres();
         return letra;
     }
     

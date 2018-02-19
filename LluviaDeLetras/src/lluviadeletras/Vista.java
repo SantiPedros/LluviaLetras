@@ -12,17 +12,19 @@ import javax.swing.*;
 
 public class Vista extends JFrame {
     private Controlador c;
-    private ArrayList<Label> letras;
+    private ArrayList <Label> letras;
+    private ArrayList<Integer> estados=new ArrayList();//para saber si las letras suben o bajan
     private Label lb;
     private JButton si, no;
     private JLabel fraseNivel, vidas, contadorVidas;
-    private JPanel barra, bloque, salida;
+    private JPanel barra, bloque,bloque2 ,salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
     private int contadorV = 0;
     private int x = 0;
+    
 
     /**
      * Constructor de la vista
@@ -38,13 +40,17 @@ public class Vista extends JFrame {
         this.setResizable(false);
         letras = new ArrayList();
         crearBloque();
+        crearBloque2();
         crearBarra();
+        moverLetra();
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(380, 80, 600, 600);
         this.getContentPane().setBackground(Color.blue);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
+      
+       
     }
 
     /**
@@ -118,15 +124,23 @@ public class Vista extends JFrame {
      * @param letra
      */
     public void crearLetras(String letra) {
-        x = (int) (Math.random() * 575);
-        lb = new Label();
-        lb.setText(letra);
-        lb.setBounds(x, 10, 30, 30);
-        lb.setBackground(Color.blue);
-        this.add(lb);
-        lb.setFont(lb.getFont().deriveFont(30.0f));
-        lb.setForeground(Color.white);
-        letras.add(lb);
+        boolean comprobar=true;
+        for (int i = 0; i < letras.size(); i++) {//comprobamos que las letras creadas no estén repetidas.
+            if(letras.get(i).getText().equals(letra)){
+                comprobar=false;
+            }
+        }
+        if(comprobar){
+            x = (int) (Math.random() * 575);
+            lb = new Label(letra);
+            lb.setBounds(x, 60, 30, 30);
+            lb.setBackground(Color.blue);
+            this.add(lb);
+            lb.setFont(lb.getFont().deriveFont(30.0f));
+            lb.setForeground(Color.white);
+            letras.add(lb);
+            estados.add(1);
+        }
     }
 
     /**
@@ -134,15 +148,49 @@ public class Vista extends JFrame {
      */
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
-            letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
+          //  letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
             if (letras.get(i).getY() >= 499 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
-            } else if ((letras.get(i).getX() >= bloque.getX() || letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 500) {
-                ascensoLetras(i);
+            }if((letras.get(i).getX() >= bloque.getX() && letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 480) {
+                if(estados.get(i)==1){
+                    System.out.println("sube");
+                    
+                    estados.set(i, 2);
+                }
+            }if((letras.get(i).getX() >= bloque2.getX() && letras.get(i).getX() <= bloque2.getX() + 85) && letras.get(i).getY() <= 62) {
+                if(estados.get(i)==2){
+                    System.out.println("baja");
+                   
+                    //letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
+                    estados.set(i, 1);
+                }
             }
         }
         this.repaint();
     }
+    
+    //METODO PARA MOVER LAS LETRAS
+     public void moverLetra(){
+        Timer tempo=new Timer(40,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                for (int i = 0; i < letras.size(); i++) {
+                    if(estados.get(i)==1){
+                        System.out.println("baja");
+                         letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() +3 , 25, 25);
+                       
+                    }else if(estados.get(i)==2){System.out.println("sube");
+                      letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25); 
+                     
+                    }
+                }
+                cambiarY();
+            }
+            
+        });
+        tempo.start();
+    }
+    
 
     /**
      * creación y adición de barra inferior de la ventana
@@ -163,13 +211,24 @@ public class Vista extends JFrame {
         bloque.setBackground(Color.gray);
         this.add(bloque);
     }
+    
+    /**
+     * Creación del bloque en la zona superior de la ventana.L
+     */
+    public void crearBloque2(){
+        bloque2=new JPanel();
+        bloque2.setBounds(275, 35 , 90, 30);
+        bloque2.setBackground(Color.gray);
+        this.add(bloque2);        
+    }
 
     /**
      * método para mover bloque a la derecha
      */
     public void moverBloqueDerecha() {
-        if (bloque.getX() <= 550) {
+        if (bloque.getX()<= 550) {
             bloque.setBounds(bloque.getX() + 10, bloque.getY(), 90, 50);
+            bloque2.setBounds(bloque.getX()+10,bloque2.getY(),90,30);
         }
     }
 
@@ -179,28 +238,13 @@ public class Vista extends JFrame {
     public void moverBloqueIzquierda() {
         if (bloque.getX() >= 0) {
             bloque.setBounds(bloque.getX() - 10, bloque.getY(), 90, 50);
+             bloque2.setBounds(bloque.getX()-10,bloque2.getY(),90,30);
         }
     }
-
-    /**
-     * ascenso de letras, se le pasa un entero
-     *
-     * @param i
-     */
-    public void ascensoLetras(int i) {
-        Timer timer;
-        timer = new Timer(40, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25);
-                if (letras.get(i).getY() <= 0) {
-                    gameOver();
-                }
-            }
-        });
-        timer.start();
-
-    }
+    
+   
+  
+    
 
     /**
      * método para eliminar las letras de pantalla
@@ -212,6 +256,7 @@ public class Vista extends JFrame {
             if (letra == letras.get(i).getText().charAt(0)) {
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
+                estados.remove(i);
                 letras.remove(i);
             }
         }
@@ -261,7 +306,6 @@ public class Vista extends JFrame {
         salida.setLayout(null);
         salida.setBounds(0, 0, 600, 600);
         salida.setBackground(Color.darkGray);
-
         salida.setVisible(true);
         this.add(salida);
     }
@@ -270,6 +314,7 @@ public class Vista extends JFrame {
      * FIN DEL JUEGO. Se genera la pantalla de fin de juego
      */
     public void gameOver() {
+        
         this.getContentPane().setEnabled(false);
         c.pararTimers();
         JLabel b = new JLabel("GAME OVER!");

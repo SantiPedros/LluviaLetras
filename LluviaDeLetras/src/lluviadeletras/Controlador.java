@@ -15,7 +15,7 @@ public class Controlador implements KeyListener, ActionListener {
     private char letraEliminar;
     private int aciertos = 0;
     private int vidas = 10;
-    private int velocidadCaida = 50;
+    private int velocidadCaida = 40;
     private int nivel = 1;
     private int velocidadCreacion = 1500;
     private boolean encontrada = false;//variable de control para saber si la letra está en pantalla o no.
@@ -45,15 +45,7 @@ public class Controlador implements KeyListener, ActionListener {
         });
         timer.start();
 
-        //Velocidad de caida
-        timer2 = new Timer(velocidadCaida, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                v.cambiarY();
-            }
-        });
-        timer2.start();
-
+       
     }
 
     @Override
@@ -98,7 +90,6 @@ public class Controlador implements KeyListener, ActionListener {
                             v.cambiarNivel(nivel);
                             aumentarVelocidadCaida();
                         }
-
                     }
                     encontrada = true;
                 }
@@ -127,7 +118,7 @@ public class Controlador implements KeyListener, ActionListener {
      */
     public void pararTimers() {
         timer.stop();
-        timer2.stop();
+        
     }
 
     /**

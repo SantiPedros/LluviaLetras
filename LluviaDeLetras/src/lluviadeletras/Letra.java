@@ -15,8 +15,6 @@ public class Letra {
     public Letra() {
         letras = new ArrayList();
     }
-    
-    
     /**
      * 
      * @return ESTE METODO TE RETORNA UNA LETRA ALEATORIA QUE SERA UN STRING.
@@ -24,6 +22,7 @@ public class Letra {
     public String letraRandom() {
         String letra;
         Boolean rep;
+        
         do {
             letra = ((char) (r.nextInt(nivel * 5) + 'A')) + "";
             rep = false;
@@ -37,6 +36,71 @@ public class Letra {
         letras.add(letra);
         return letra;
     }
+    
+   /**
+    * MÉTODO PARA LA CREACION DE LETRAS.
+    */
+    
+    public String creacionCaracteres(){
+        char letra=(char)Math.floor(Math.random()*(90-65)+65);
+        switch(nivel){
+            case 1:
+                do {
+                    if(letra=='A' || letra=='S' || letra=='D'|| letra=='D' || letra=='F'|| letra=='J'|| letra=='K'|| letra=='K'|| letra=='L'){
+                        break;
+                    }else{
+                        letra=(char)Math.floor(Math.random()*(90-65)+65);
+                    } 
+                } while (true);
+           break;
+                
+                
+                
+            case 2:
+                 do {
+                    if(letra=='G' || letra=='H' || letra=='R'|| letra=='U' || letra=='M'|| letra=='C'|| letra=='T'|| letra=='Y'|| letra=='E'){
+                        break;
+                    }else{
+                        letra=(char)Math.floor(Math.random()*(90-65)+65);
+                    } 
+                } while (true);
+                
+                break;
+                
+            case 3:
+                 do {
+                    if(letra=='Z' || letra=='N' || letra=='Q'|| letra=='W' || letra=='I'|| letra=='O'|| letra=='P'|| letra=='T'|| letra=='X'){
+                        break;
+                    }else{
+                        letra=(char)Math.floor(Math.random()*(90-65)+65);
+                    } 
+                } while (true);
+                 break;
+           
+            case 4:
+                 do {
+                    if(letra=='A' || letra=='S' || letra=='D'|| letra=='D' || letra=='F'|| letra=='J'|| letra=='K'|| letra=='K'|| letra=='L'){
+                        break;
+                    }else{
+                        letra=(char)Math.floor(Math.random()*(90-65)+65);
+                    } 
+                } while (true);
+                 break;
+            case 5:
+                 
+                    if((int )Math.floor(Math.random()*(3-1)+1)==1){
+                       letra=(char)Math.floor(Math.random()*(90-65)+65); 
+                       
+                    }else{
+                        letra=(char)Math.floor(Math.random()*(57-48)+65);
+                    } 
+         
+                 break;         
+                        
+        }
+        return ""+letra;
+    }
+    
     /**
      * 
      * @param letra CON ESTE METODO ELIMINA LA LETRA QUE LE PASAMOS DEL ARRAY
@@ -69,5 +133,6 @@ public class Letra {
             nivel=5;
         }
     }   
-    
+ 
+        
 }
