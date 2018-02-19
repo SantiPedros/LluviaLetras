@@ -9,7 +9,7 @@ public class Letra {
     private Random r = new Random();
     private ArrayList<String> letras;
     private int nivel=1;
-        private int velocidadCaida;
+    private int velocidadCaida;
     private String fraseNivel;
 
     public Letra() {
@@ -133,6 +133,12 @@ public class Letra {
             nivel=5;
         }
     }   
+
+    public int getNivel() {
+        return nivel;
+    }
  
+        
+        
         
 }

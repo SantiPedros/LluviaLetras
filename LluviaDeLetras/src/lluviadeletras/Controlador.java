@@ -66,6 +66,8 @@ public class Controlador implements KeyListener, ActionListener {
             //Esto es para las teclase especiales, Mayusculas, y CTLR para los atajos 
         } else if (ke.getKeyCode() == KeyEvent.VK_1 || ke.getKeyCode() == KeyEvent.VK_2 || ke.getKeyCode() == KeyEvent.VK_3 || ke.getKeyCode() == KeyEvent.VK_4 || ke.getKeyCode() == KeyEvent.VK_5) {
             //Aquí nos encargamos del numero de CTRL que es pulsado.
+        }else if(ke.getKeyCode()==KeyEvent.VK_SPACE){
+            v.pause();
         } else {
 
             /**
@@ -76,20 +78,23 @@ public class Controlador implements KeyListener, ActionListener {
             for (int i = 0; i < v.getLetras().size(); i++) {
 
                 if (letraEliminar == v.getLetras().get(i).getText().charAt(0)) {
-                    m.mandarLetra(letraEliminar);
-                    v.eliminarLetra(letraEliminar);
-                    aciertos++;
-                    if (aciertos == 10) {//para cada 10 aciertos subir el nivel
-                        aciertos = 0;
-                        nivel++;
+                    v.colorChange(i);
+                    if(v.getColores().get(i)==0){
+                        m.mandarLetra(letraEliminar);
+                        v.eliminarLetra(letraEliminar);
+                        aciertos++;
+                        if (aciertos == 10) {//para cada 10 aciertos subir el nivel
+                            aciertos = 0;
+                            nivel++;
 
-                        if (nivel > 5) {
-                            nivel = 5;
-                        } else {
-                            m.cambiarNivel(nivel);
-                            v.cambiarNivel(nivel);
-                            aumentarVelocidadCaida();
-                        }
+                            if (nivel > 5) {
+                                nivel = 5;
+                            } else {
+                                m.cambiarNivel(nivel);
+                                v.cambiarNivel(nivel);
+                                aumentarVelocidadCaida();
+                            }
+                        }                    
                     }
                     encontrada = true;
                 }
@@ -217,4 +222,9 @@ public class Controlador implements KeyListener, ActionListener {
         crearTimers();
     }
 
+    public int getNivel() {
+        return nivel;
+    }
+
+    
 }

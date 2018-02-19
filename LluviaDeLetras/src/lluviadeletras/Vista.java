@@ -13,7 +13,9 @@ import javax.swing.*;
 public class Vista extends JFrame {
     private Controlador c;
     private ArrayList <Label> letras;
-    private ArrayList<Integer> estados=new ArrayList();//para saber si las letras suben o bajan
+    private ArrayList<Integer> estados=new ArrayList<>();//para saber si las letras suben o bajan
+    private ArrayList<Integer> colores=new ArrayList<>();//Array de control de colores de las letras.
+    private ArrayList<Integer> velocidades=new ArrayList<>();
     private Label lb;
     private JButton si, no;
     private JLabel fraseNivel, vidas, contadorVidas;
@@ -24,6 +26,8 @@ public class Vista extends JFrame {
     private JMenuItem level1, level2, level3, level4, level5;
     private int contadorV = 0;
     private int x = 0;
+    private Timer tempo;
+    private boolean pause=false;
     
 
     /**
@@ -137,9 +141,11 @@ public class Vista extends JFrame {
             lb.setBackground(Color.blue);
             this.add(lb);
             lb.setFont(lb.getFont().deriveFont(30.0f));
-            lb.setForeground(Color.white);
             letras.add(lb);
             estados.add(1);
+            colores.add((int)Math.floor(Math.random()*(5-2)+2));
+            speedingSwap();
+            colorChange(colores.size()-1);
         }
     }
 
@@ -148,10 +154,15 @@ public class Vista extends JFrame {
      */
     public void cambiarY() {
         for (int i = 0; i < letras.size(); i++) {
-          //  letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
+          
             if (letras.get(i).getY() >= 499 && (letras.get(i).getX() < bloque.getX() || letras.get(i).getX() > bloque.getX() + 85)) {
                 gameOver();
-            }if((letras.get(i).getX() >= bloque.getX() && letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 480) {
+            }
+            if (letras.get(i).getY() <=15 && (letras.get(i).getX() < bloque2.getX() || letras.get(i).getX() > bloque2.getX() + 85)) {
+                gameOver();            
+            } 
+           
+            if((letras.get(i).getX() >= bloque.getX() && letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 480) {
                 if(estados.get(i)==1){
                     System.out.println("sube");
                     
@@ -161,7 +172,6 @@ public class Vista extends JFrame {
                 if(estados.get(i)==2){
                     System.out.println("baja");
                    
-                    //letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() + 4, 30, 30);
                     estados.set(i, 1);
                 }
             }
@@ -171,16 +181,16 @@ public class Vista extends JFrame {
     
     //METODO PARA MOVER LAS LETRAS
      public void moverLetra(){
-        Timer tempo=new Timer(40,new ActionListener(){
+        tempo=new Timer(40,new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 for (int i = 0; i < letras.size(); i++) {
                     if(estados.get(i)==1){
                         System.out.println("baja");
-                         letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() +3 , 25, 25);
+                         letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() +(velocidades.get(i)+1 ), 25, 25);
                        
                     }else if(estados.get(i)==2){System.out.println("sube");
-                      letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() - 3, 25, 25); 
+                      letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() -(velocidades.get(i)+1), 25, 25); 
                      
                     }
                 }
@@ -242,10 +252,7 @@ public class Vista extends JFrame {
         }
     }
     
-   
-  
     
-
     /**
      * método para eliminar las letras de pantalla
      *
@@ -257,7 +264,9 @@ public class Vista extends JFrame {
                 letras.get(i).setVisible(false);
                 letras.get(i).setBackground(Color.blue);
                 estados.remove(i);
+                colores.remove(i);
                 letras.remove(i);
+                velocidades.remove(i);
             }
         }
     }
@@ -310,21 +319,7 @@ public class Vista extends JFrame {
         this.add(salida);
     }
 
-    /**
-     * FIN DEL JUEGO. Se genera la pantalla de fin de juego
-     */
-    public void gameOver() {
-        
-        this.getContentPane().setEnabled(false);
-        c.pararTimers();
-        JLabel b = new JLabel("GAME OVER!");
-        b.setFont(b.getFont().deriveFont(40.0f));
-        b.setForeground(Color.red);
-        b.setBounds(170, 260, 280, 50);
-        add(b);
-        this.getContentPane().setBackground(Color.black);
-        this.repaint();
-    }
+   
 
     /**
      * Metodo para comprobar el nivel y actualizarlo en la vista
@@ -352,7 +347,97 @@ public class Vista extends JFrame {
         }
 
     }
+    /**
+     * METODO DE SELECCION DE COLORES ALEATORIOS. SE LE MANDA UN ENTERO POR PARAMETRO.
+     * @return 
+     */
+    
+    public void colorChange(int numero){
+        colores.set(numero, colores.get(numero)-1);
+        switch(colores.get(numero)){
+            case 3:
+                letras.get(numero).setForeground(Color.white);
+                break;                
+            case 2:
+                letras.get(numero).setForeground(Color.RED);
+                break;
+            case 1:
+                 letras.get(numero).setForeground(Color.GREEN);
+        }
+        
+    }
+    /**
+     * METO
+     * @param niveles 
+     */
+    public void speedingSwap(){
+        switch(c.getNivel()){
+            case 1:
+                velocidades.add((int)Math.floor(Math.random()*(3-1)+1));
+                break;
+            case 2:
+                velocidades.add((int)Math.floor(Math.random()*(4-1)+1));
+                break;
+            case 3:
+                 velocidades.add((int)Math.floor(Math.random()*(5-2)+2));
+                break;
+            case 4:
+                 velocidades.add((int)Math.floor(Math.random()*(5-3)+3));
+                break;
+            case 5:
+                 velocidades.add((int)Math.floor(Math.random()*(5-4)+4));
+                break;
+                        
+        }
+        
+    }
+    
+    
+    /**
+     * METODO DE PAUSADO y REANUDADO DE JUEGO 
+     */
+    public void pause(){
+        if(!pause){
+            tempo.stop();
+            pause=true;
+        }else{
+            tempo.start();
+            pause=false;
+        }
+    }
+    
+    
+    
+    
+     /**
+     * FIN DEL JUEGO. Se genera la pantalla de fin de juego
+     */
+    public void gameOver() {
+        
+        this.getContentPane().setEnabled(false);
+        c.pararTimers();
+        JLabel b = new JLabel("GAME OVER!");
+        b.setFont(b.getFont().deriveFont(40.0f));
+        b.setForeground(Color.red);
+        b.setBounds(170, 260, 280, 50);
+        add(b);
+        this.getContentPane().setBackground(Color.black);
+        tempo.stop();
+        for (int i = 0; i < letras.size(); i++) {
+            this.remove(letras.get(i));//eliminacion de todas las letras.
+        }
+        this.repaint();
+    }
+    
+    
+    
 
+    public ArrayList<Integer> getColores() {
+        return colores;
+    }
+    
+    
+    
     public JPanel getSalida() {
         return salida;
     }
