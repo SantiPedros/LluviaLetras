@@ -367,9 +367,9 @@ public class Vista extends JFrame {
         
     }
     /**
-     * METO
+     * METODO DE CAMBIO DE VELOCIDAD ALEATORIA PARA CADA LETRA
      * @param niveles 
-     */
+     */ 
     public void speedingSwap(){
         switch(c.getNivel()){
             case 1:
