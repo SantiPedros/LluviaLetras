@@ -27,6 +27,7 @@ public class Controlador implements KeyListener, ActionListener {
     public Controlador() {
         v = new Vista(this);
         m = new Modelo(this);
+        vista=new VistaInicio(this);
         crearTimers();
     }
 

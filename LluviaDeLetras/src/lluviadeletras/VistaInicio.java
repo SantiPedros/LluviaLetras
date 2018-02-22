@@ -7,20 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class VistaInicio extends JFrame {
     private JPanel panel;
     private JLabel nombre;
-    private TextField texto;
+    private JTextField texto;
     private JButton boton;
     private Controlador control;
     
     VistaInicio(Controlador control){
         
         this.control=control;
-        this.setLayout(null);
         
+        this.setLayout(null);
         this.inicializar();
         this.addElements();
         this.addControl();
@@ -36,10 +37,9 @@ public class VistaInicio extends JFrame {
      */
     public void inicializar(){
         panel=new JPanel();
-        nombre=new JLabel("Jugador");
-        texto=new TextField();
-        boton=new JButton();
-       
+        nombre=new JLabel("JUGADOR");
+        texto=new JTextField();
+        boton=new JButton("START"); 
     }
     
     /**
@@ -53,6 +53,7 @@ public class VistaInicio extends JFrame {
      * Añadido de elementos a VistaInicio
      */
     public void addElements(){
+        panel.setLayout(null);
         nombre.setBounds(50, 50, 300, 150);
         nombre.setFont(nombre.getFont().deriveFont(35.0f));
         nombre.setForeground(Color.white);
@@ -60,11 +61,13 @@ public class VistaInicio extends JFrame {
         
         texto.setBounds(50, 200, 280, 120);
         texto.setFont(texto.getFont().deriveFont(35.0f));
-        panel.add(texto);
+         panel.add(texto);
         
         boton.setBounds(220, 400, 200, 80);
         boton.setFont(nombre.getFont().deriveFont(25.0f));
         panel.add(boton);
+        panel.setBackground(Color.blue);
+        panel.setSize(600, 600);
         this.add(panel);
     }
     

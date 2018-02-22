@@ -52,7 +52,7 @@ public class Vista extends JFrame {
         this.setBounds(380, 80, 600, 600);
         this.getContentPane().setBackground(Color.blue);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
+        this.setVisible(false);
       
        
     }
@@ -199,7 +199,7 @@ public class Vista extends JFrame {
             
         });
         tempo.start();
-    }
+      }
     
 
     /**
