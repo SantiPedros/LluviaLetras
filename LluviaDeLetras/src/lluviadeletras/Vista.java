@@ -18,7 +18,7 @@ public class Vista extends JFrame {
     private ArrayList<Integer> velocidades=new ArrayList<>();
     private Label lb;
     private JButton si, no;
-    private JLabel fraseNivel, vidas, contadorVidas;
+    private JLabel fraseNivel, vidas, contadorVidas,usuario;
     private JPanel barra, bloque,bloque2 ,salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
@@ -57,6 +57,10 @@ public class Vista extends JFrame {
        
     }
 
+    public JLabel getUsuario() {
+        return usuario;
+    }
+
     /**
      * inicializar elementos de la Barra de Menu superior.
      */
@@ -81,14 +85,21 @@ public class Vista extends JFrame {
         vidas.setFont(vidas.getFont().deriveFont(15.0f));
         vidas.setForeground(Color.white);
         vidas.setBounds(15, 15, 55, 20);
-        this.add(vidas);
+        
+        usuario=new JLabel("JUGADOR:");
+        usuario.setFont(vidas.getFont().deriveFont(15.0f));
+        usuario.setForeground(Color.white);
+        usuario.setBounds(190,15, 150, 20);
+        
+        
         contadorVidas = new JLabel("10");
         contadorVidas.setBounds(70, 15, 60, 20);
         contadorVidas.setFont(contadorVidas.getFont().deriveFont(15.0f));
         contadorVidas.setForeground(Color.white);
-
+        this.add(vidas);
         this.add(contadorVidas);
         this.add(fraseNivel);
+        this.add(usuario);
         contadorV = 10;
     }
 

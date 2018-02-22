@@ -28,7 +28,7 @@ public class Controlador implements KeyListener, ActionListener {
         v = new Vista(this);
         m = new Modelo(this);
         vista=new VistaInicio(this);
-        crearTimers();
+        
     }
 
     /**
@@ -201,6 +201,14 @@ public class Controlador implements KeyListener, ActionListener {
                 m.cambiarNivel(nivel);
                 crearTimers();
 
+                break;
+                
+            case "START":
+                v.getUsuario().setText(v.getUsuario().getText()+" "+vista.darNombre());
+                v.setVisible(true);
+                crearTimers();
+                vista.dispose();
+                
                 break;
         }
     }
