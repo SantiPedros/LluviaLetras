@@ -164,13 +164,13 @@ public class Vista extends JFrame {
            
             if((letras.get(i).getX() >= bloque.getX() && letras.get(i).getX() <= bloque.getX() + 85) && letras.get(i).getY() >= 480) {
                 if(estados.get(i)==1){
-                    System.out.println("sube");
+                   
                     
                     estados.set(i, 2);
                 }
             }if((letras.get(i).getX() >= bloque2.getX() && letras.get(i).getX() <= bloque2.getX() + 85) && letras.get(i).getY() <= 62) {
                 if(estados.get(i)==2){
-                    System.out.println("baja");
+                   
                    
                     estados.set(i, 1);
                 }
