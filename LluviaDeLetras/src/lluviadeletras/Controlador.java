@@ -9,6 +9,7 @@ import javax.swing.Timer;
 public class Controlador implements KeyListener, ActionListener {
 
     private Vista v;
+    private VistaInicio vista;
     private Modelo m;
     private Timer timer, timer2;
     private String letra;

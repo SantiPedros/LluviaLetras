@@ -186,10 +186,10 @@ public class Vista extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 for (int i = 0; i < letras.size(); i++) {
                     if(estados.get(i)==1){
-                        System.out.println("baja");
+                       
                          letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() +(velocidades.get(i)+1 ), 25, 25);
                        
-                    }else if(estados.get(i)==2){System.out.println("sube");
+                    }else if(estados.get(i)==2){
                       letras.get(i).setBounds(letras.get(i).getX(), letras.get(i).getY() -(velocidades.get(i)+1), 25, 25); 
                      
                     }

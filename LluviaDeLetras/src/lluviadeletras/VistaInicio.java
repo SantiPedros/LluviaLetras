@@ -21,9 +21,9 @@ public class VistaInicio extends JFrame {
         this.control=control;
         this.setLayout(null);
         
-        this.inicializado();
+        this.inicializar();
         this.addElements();
-        this.addControladores();
+        this.addControl();
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(380, 80, 600, 600);
@@ -34,7 +34,7 @@ public class VistaInicio extends JFrame {
     /**
      * Inicializacion de elementos de Vista Inicio
      */
-    public void inicializado(){
+    public void inicializar(){
         panel=new JPanel();
         nombre=new JLabel("Jugador");
         texto=new TextField();
@@ -45,7 +45,7 @@ public class VistaInicio extends JFrame {
     /**
      * Añadido de controladores
      */
-    public void addControladores(){
+    public void addControl(){
         boton.addActionListener(control);        
     }
     
@@ -55,9 +55,11 @@ public class VistaInicio extends JFrame {
     public void addElements(){
         nombre.setBounds(50, 50, 300, 150);
         nombre.setFont(nombre.getFont().deriveFont(35.0f));
+        nombre.setForeground(Color.white);
         panel.add(nombre);
         
         texto.setBounds(50, 200, 280, 120);
+        texto.setFont(texto.getFont().deriveFont(35.0f));
         panel.add(texto);
         
         boton.setBounds(220, 400, 200, 80);
