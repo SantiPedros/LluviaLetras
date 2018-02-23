@@ -54,8 +54,7 @@ public class Controlador implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent ke) {
     }
 
-    /**
-     *
+    /**     
      * METODOS DE CONTROL DE TECLAS
      */
     @Override
@@ -65,11 +64,14 @@ public class Controlador implements KeyListener, ActionListener {
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {//izquierda <--
             v.moverBloqueIzquierda();
         } else if (ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CONTROL) {
-            //Esto es para las teclase especiales, Mayusculas, y CTLR para los atajos 
+            //Esto es para las teclase especiles, Mayusculas, y CTLR para los atajos 
         } else if (ke.getKeyCode() == KeyEvent.VK_1 || ke.getKeyCode() == KeyEvent.VK_2 || ke.getKeyCode() == KeyEvent.VK_3 || ke.getKeyCode() == KeyEvent.VK_4 || ke.getKeyCode() == KeyEvent.VK_5) {
             //Aquí nos encargamos del numero de CTRL que es pulsado.
         }else if(ke.getKeyCode()==KeyEvent.VK_SPACE){
-            v.pause();
+           //PAUSA CONTROLADA CON LA BARRA ESPACIADORA.
+           v.pause();
+           timer.stop();
+           
         } else {
 
             /**
@@ -154,6 +156,7 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCreacion = 1500;
                 aciertos = 0;
                 nivel = 1;
+                
                 v.cambiarNivel(nivel);
                 m.cambiarNivel(nivel);
                 crearTimers();
@@ -164,6 +167,8 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCreacion = 1300;
                 nivel = 2;
                 aciertos = 0;
+                v.getBloque().setBounds(265, 500, 90, 50);//Movimiento de bloques de rebote
+                v.getBloque2().setBounds(285, 35 , 90, 30);
                 v.cambiarNivel(nivel);
                 m.cambiarNivel(nivel);
                 crearTimers();
@@ -175,6 +180,8 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCreacion = 1100;
                 aciertos = 0;
                 nivel = 3;
+                v.getBloque().setBounds(240, 500, 90, 50);
+                v.getBloque2().setBounds(295, 35 , 90, 30);
                 v.cambiarNivel(nivel);
                 m.cambiarNivel(nivel);
                 crearTimers();
@@ -186,6 +193,8 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCreacion = 900;
                 aciertos = 0;
                 nivel = 4;
+                v.getBloque().setBounds(220, 500, 90, 50);
+                v.getBloque2().setBounds(315, 35 , 90, 30);
                 v.cambiarNivel(nivel);
                 m.cambiarNivel(nivel);
                 crearTimers();
@@ -197,6 +206,8 @@ public class Controlador implements KeyListener, ActionListener {
                 velocidadCreacion = 700;
                 nivel = 5;
                 aciertos = 0;
+                 v.getBloque().setBounds(190, 500, 90, 50);
+                v.getBloque2().setBounds(355, 35 , 90, 30);
                 v.cambiarNivel(nivel);
                 m.cambiarNivel(nivel);
                 crearTimers();
@@ -208,7 +219,16 @@ public class Controlador implements KeyListener, ActionListener {
                 v.setVisible(true);
                 crearTimers();
                 vista.dispose();
+                break;
                 
+            case "CONTINUAR":
+               
+               timer.start();
+               v.pause();
+               break;
+               
+            case "TERMINAR":
+                System.exit(0);
                 break;
         }
     }

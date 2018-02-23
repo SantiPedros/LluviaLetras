@@ -17,17 +17,27 @@ public class Vista extends JFrame {
     private ArrayList<Integer> colores=new ArrayList<>();//Array de control de colores de las letras.
     private ArrayList<Integer> velocidades=new ArrayList<>();
     private Label lb;
-    private JButton si, no;
+    private JButton si, no,continuar,terminar;
     private JLabel fraseNivel, vidas, contadorVidas,usuario;
     private JPanel barra, bloque,bloque2 ,salida;
     private JMenuBar barraMenu;
     private JMenu archivo, level;
     private JMenuItem salir, guardar, cargar;
     private JMenuItem level1, level2, level3, level4, level5;
+    private JPanel pausa;
+    
     private int contadorV = 0;
     private int x = 0;
     private Timer tempo;
-    private boolean pause=false;
+    private boolean pause=false;//controlaremos si la aplicacion está en pausa o no
+
+    public JPanel getBloque() {
+        return bloque;
+    }
+
+    public JPanel getBloque2() {
+        return bloque2;
+    }
     
 
     /**
@@ -47,13 +57,13 @@ public class Vista extends JFrame {
         crearBloque2();
         crearBarra();
         moverLetra();
+        menuPausa();
         this.addKeyListener(c);
         this.setResizable(false);
         this.setBounds(380, 80, 600, 600);
         this.getContentPane().setBackground(Color.blue);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(false);
-      
+        this.setVisible(false);      
        
     }
 
@@ -329,9 +339,58 @@ public class Vista extends JFrame {
         salida.setVisible(true);
         this.add(salida);
     }
+    
+    /**
+     * Método de creacion menu de pausa. Un panel y dos botones
+     */    
+    public void menuPausa(){
+        pausa=new JPanel();
+        continuar=new JButton("CONTINUAR");
+        terminar=new JButton("TERMINAR");
+        continuar.setBounds(25,50, 195,55);
+        terminar.setBounds(250, 50, 195, 55);
+        continuar.setFont(continuar.getFont().deriveFont(25.0f));
+        terminar.setFont(terminar.getFont().deriveFont(25.0f));
+        continuar.setForeground(Color.white);
+        terminar.setForeground(Color.white);
+        continuar.setBackground(Color.green);
+        terminar.setBackground(Color.red);
+        continuar.addActionListener(c);
+        terminar.addActionListener(c);
+        pausa.setBackground(Color.lightGray);
+        pausa.setBounds(60,200,470,150);
+        pausa.setLayout(null);
+        pausa.setVisible(false);
+        pausa.add(continuar);
+        pausa.add(terminar);
+        this.add(pausa);
+        repaint();
+    }
+    
+      /**
+     * METODO DE PAUSADO y REANUDADO DE JUEGO 
+     */
+    public void pause(){
+        if(!pause){//si la aplicación no está en pausa...
+            this.add(pausa);
+            tempo.stop();
+            pausa.setVisible(true);
+            this.removeKeyListener(c);
+            pause=true;
+        }else{//sino, arrancamos los timers, activamos escuchadores de teclado y devolvemos el foco al Frame principal Vista.
+            this.remove(pausa);
+            this.addKeyListener(c);
+            this.requestFocus();
+            tempo.start();
+            pause=false;
+        }
+        this.repaint();
+    }
 
-   
-
+    public JPanel getPausa() {
+        return pausa;
+    }
+    
     /**
      * Metodo para comprobar el nivel y actualizarlo en la vista
      *
@@ -403,20 +462,14 @@ public class Vista extends JFrame {
         
     }
     
-    
-    /**
-     * METODO DE PAUSADO y REANUDADO DE JUEGO 
-     */
-    public void pause(){
-        if(!pause){
-            tempo.stop();
-            pause=true;
-        }else{
-            tempo.start();
-            pause=false;
-        }
+    public void pararPrograma(){
+        tempo.stop();
     }
     
+    public void reanudarPrograma(){
+        tempo.start();
+    }
+      
     
     
     
